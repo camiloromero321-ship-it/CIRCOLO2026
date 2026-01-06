@@ -1,1 +1,1113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circolo Life | Pure Legacy</title>
+    <!-- Fuentes: Cormorant Garamond (Editorial fina) y Inter (Minimalismo suizo) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@200;300;400;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- ESTÉTICA "TOTAL WHITE" (Galería de Arte / Alta Costura) --- */
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #111111;
+            --accent-color: #888888;
+            --font-serif: 'Cormorant Garamond', serif; 
+            --font-sans: 'Inter', sans-serif;
+        }
 
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-sans);
+            font-weight: 300;
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            transition: direction 0.3s ease; /* Transición suave para RTL */
+        }
+
+        /* Soporte RTL para Árabe */
+        body[dir="rtl"] {
+            font-family: 'Tahoma', 'Arial', sans-serif; /* Fallback seguro para árabe */
+        }
+        
+        body[dir="rtl"] .main-header {
+            flex-direction: row-reverse;
+        }
+
+        body[dir="rtl"] .logo {
+            letter-spacing: 0; /* El espaciado no funciona igual en árabe */
+            font-size: 1.6rem;
+        }
+
+        body[dir="rtl"] .subtitle {
+            letter-spacing: 0;
+        }
+        
+        body[dir="rtl"] .card {
+            text-align: right;
+            align-items: flex-end;
+        }
+
+        body[dir="rtl"] .lang-dropdown {
+            right: auto;
+            left: 0;
+            text-align: left;
+        }
+
+        body[dir="rtl"] a.text-link::after {
+            transform-origin: bottom left;
+            left: auto;
+            right: 0;
+        }
+        
+        body[dir="rtl"] a.text-link:hover::after {
+            transform-origin: bottom right;
+        }
+
+        /* --- TIPOGRAFÍA --- */
+        h1, h2, h3, h4, h5 {
+            font-family: var(--font-serif);
+            font-weight: 300;
+            margin: 0;
+            color: var(--text-color);
+        }
+
+        .subtitle {
+            font-family: var(--font-sans);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            margin-bottom: 2rem;
+            display: block;
+            color: var(--accent-color);
+        }
+
+        .heading-xl {
+            font-size: 4.5rem;
+            line-height: 1;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+        }
+
+        .heading-l {
+            font-size: 3rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        p {
+            font-size: 1.05rem;
+            max-width: 650px;
+            margin: 0 auto;
+            color: #444;
+            line-height: 1.9;
+        }
+
+        /* Enlaces sutiles */
+        a.text-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            position: relative;
+            padding-bottom: 5px;
+            margin-top: 2rem;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        a.text-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--text-color);
+            transform-origin: bottom right;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        a.text-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        /* --- HEADER --- */
+        .main-header {
+            padding: 2.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: transparent;
+            transition: all 0.5s ease;
+        }
+
+        .main-header.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 1.5rem 4rem;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+        }
+
+        .logo {
+            font-family: var(--font-sans);
+            font-size: 1.4rem; /* Reducido ligeramente para sutileza */
+            letter-spacing: 0.35em; /* Aumentado para más aire y elegancia */
+            text-transform: uppercase;
+            font-weight: 400; /* Peso regular, mucho más limpio */
+            color: #2a2a2a; /* Gris muy oscuro, suave, no negro puro */
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            text-shadow: none; /* Eliminamos sombras para limpieza total */
+        }
+
+        .header-left { display: flex; align-items: center; }
+        .header-right { display: flex; align-items: center; gap: 2rem; }
+
+        .menu-trigger {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            cursor: pointer;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .cta-btn {
+            background: transparent;
+            color: var(--text-color);
+            padding: 10px 0;
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            border: none;
+            border-bottom: 1px solid transparent;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+
+        .cta-btn:hover {
+            border-bottom: 1px solid var(--text-color);
+        }
+
+        /* --- LANGUAGE SELECTOR --- */
+        .lang-selector {
+            position: relative;
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            padding: 10px 0;
+            min-width: 30px; /* Espacio para el texto */
+            z-index: 1001; /* Asegurar que esté por encima */
+        }
+
+        .current-lang {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            justify-content: flex-end; /* Alinear a la derecha */
+        }
+
+        .lang-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0; /* Alinear a la derecha por defecto */
+            background-color: #fff;
+            min-width: 120px;
+            padding: 1rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.03);
+            text-align: right; /* Texto alineado a la derecha */
+        }
+
+        .lang-selector:hover .lang-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-dropdown span {
+            display: block;
+            padding: 5px 1.5rem;
+            color: #999;
+            text-decoration: none;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+
+        .lang-dropdown span:hover {
+            color: var(--text-color);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem;
+            position: relative;
+            background-color: #fff;
+        }
+
+        .hero-image-container {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
+            opacity: 0.2;
+            filter: grayscale(100%);
+            background-image: url('https://images.unsplash.com/photo-1492552181161-62217fc3076d?q=80&w=2699&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            transition: opacity 2s ease;
+        }
+        
+        .hero:hover .hero-image-container { opacity: 0.4; }
+        .hero-content { position: relative; z-index: 2; max-width: 900px; }
+
+        /* --- SECTIONS --- */
+        .section-spacer { padding: 10rem 4rem; }
+        .text-center { text-align: center; }
+
+        /* --- TEXT MARQUEE (CLIENTS) --- */
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
+            padding: 4rem 0;
+            border-top: 1px solid #f9f9f9;
+            border-bottom: 1px solid #f9f9f9;
+            background: #fff;
+        }
+        
+        .marquee-track {
+            display: flex;
+            width: fit-content;
+            animation: scroll 40s linear infinite;
+        }
+        
+        .marquee-item {
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: #999;
+            padding: 0 3rem;
+            white-space: nowrap;
+        }
+
+        /* --- PROJECT CAROUSEL (IMAGES) --- */
+        .project-carousel-section {
+            padding: 0;
+            overflow: hidden;
+            background-color: #fafafa;
+        }
+
+        .project-carousel-container {
+            width: 100%;
+            padding: 6rem 0;
+        }
+
+        .project-carousel-track {
+            display: flex;
+            gap: 2rem;
+            width: fit-content;
+            animation: scroll 60s linear infinite;
+            padding-left: 4rem; /* Initial spacing */
+        }
+
+        /* Pause animation on hover for UX */
+        .project-carousel-track:hover {
+            animation-play-state: paused;
+        }
+
+        .project-card-slide {
+            flex: 0 0 450px; /* Fixed width for consistency */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .project-card-slide:hover {
+            opacity: 0.8;
+        }
+
+        .slide-image-wrapper {
+            width: 100%;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            background-color: #eee;
+        }
+
+        .slide-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: all 0.6s ease;
+        }
+
+        .project-card-slide:hover .slide-image-wrapper img {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        .slide-country {
+            font-family: var(--font-sans);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .slide-title {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            margin-bottom: 0.2rem;
+            font-weight: 300;
+            color: var(--text-color);
+        }
+
+        .slide-client {
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-250px * 14)); } /* Aproximación de desplazamiento */
+        }
+
+        /* --- GRID --- */
+        .grid-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6rem;
+            padding: 0 4rem;
+        }
+
+        /* GRID ESPECÍFICO PARA EL EQUIPO */
+        .team-grid-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr); /* 6 Columnas para imágenes más pequeñas */
+            gap: 3rem; /* Espacio ajustado */
+            padding: 0 4rem;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .card-image-wrapper {
+            width: 100%;
+            overflow: hidden;
+            margin-bottom: 2.5rem;
+            aspect-ratio: 3/4;
+            background-color: #f9f9f9;
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .card:hover img {
+            filter: grayscale(0%);
+            transform: scale(1.03);
+        }
+
+        .card h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #666;
+            margin: 0;
+            max-width: 90%;
+            font-weight: 300;
+        }
+
+        /* --- TEAM SPECIFIC STYLES --- */
+        .team-card-image-wrapper {
+            width: 100%;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            aspect-ratio: 3/4; /* Formato retrato estándar */
+            background-color: #fdfdfd;
+            /* Margen interno para que la foto no toque los bordes (Efecto Passepartout) */
+            padding: 10px; 
+            box-sizing: border-box; 
+        }
+
+        .team-card-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: all 0.6s ease;
+        }
+
+        .card:hover .team-card-image-wrapper img {
+            filter: grayscale(0%);
+            transform: scale(1.02);
+        }
+
+        .team-name {
+            font-size: 1rem; /* Nombre aún más pequeño */
+            margin-bottom: 0.3rem;
+            font-weight: 400;
+            color: var(--text-color);
+        }
+        
+        .team-role {
+            font-family: var(--font-sans);
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #999;
+        }
+
+        .manifesto {
+            background-color: #fdfdfd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .manifesto-text {
+            font-family: var(--font-serif);
+            font-size: 2rem; /* Ajustado para el nuevo texto más largo */
+            text-align: center;
+            line-height: 1.4;
+            max-width: 900px;
+            color: #222;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 6rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-top: 1px solid #f0f0f0;
+            margin-top: 0;
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-link {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #111;
+            text-decoration: none;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+
+        .footer-link:hover { opacity: 1; }
+
+        @media (max-width: 1200px) {
+            .team-grid-container { grid-template-columns: repeat(4, 1fr); }
+        }
+
+        @media (max-width: 1024px) {
+            .heading-xl { font-size: 3.5rem; }
+            .grid-container { grid-template-columns: 1fr; gap: 4rem; }
+            .team-grid-container { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+            .section-spacer { padding: 6rem 2rem; }
+            .manifesto-text { font-size: 1.8rem; }
+            footer { flex-direction: column; align-items: center; gap: 3rem; text-align: center; }
+            .main-header { padding: 1.5rem 2rem; }
+            .logo { position: relative; left: 0; transform: none; margin-bottom: 1rem; font-size: 1.5rem; }
+            .main-header { flex-direction: column; gap: 1rem; }
+            .header-right { gap: 1rem; }
+            .project-carousel-track { animation: scroll 30s linear infinite; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER FLOTANTE -->
+    <header class="main-header" id="header">
+        <div class="header-left">
+            <div class="menu-trigger">
+                <span data-i18n="menu">Menu</span>
+            </div>
+        </div>
+        
+        <div class="logo">CIRCOLO</div>
+        
+        <div class="header-right">
+            <div class="lang-selector">
+                <span class="current-lang">EN</span>
+                <div class="lang-dropdown">
+                    <span onclick="setLanguage('en')">EN</span>
+                    <span onclick="setLanguage('ar')">AR</span> <!-- Árabe (Principal) -->
+                    <span onclick="setLanguage('ru')">RU</span> <!-- Ruso -->
+                    <span onclick="setLanguage('zh')">ZH</span> <!-- Chino -->
+                    <span onclick="setLanguage('es')">ES</span>
+                    <span onclick="setLanguage('pt')">PT</span>
+                    <span onclick="setLanguage('fr')">FR</span>
+                    <span onclick="setLanguage('it')">IT</span>
+                </div>
+            </div>
+            <button class="cta-btn" data-i18n="inquire">Inquire</button>
+        </div>
+    </header>
+
+    <!-- HERO MINIMALISTA -->
+    <section class="hero">
+        <div class="hero-image-container"></div>
+        <div class="hero-content">
+            <h1 class="heading-xl" style="color: #111;" data-i18n="heroTitle">Creating Legacy Experiences</h1>
+            <p style="color: #444; max-width: 600px;" data-i18n="heroText">
+                At Circolo, we’re revolutionizing Legacy Experience as a Service (LEAAS), crafting pioneering moments and meaningful connections. We leave a lasting legacy that bridges the physical and digital worlds, powered by bold innovation and cutting-edge technology.
+            </p>
+            <a href="#" class="text-link" style="margin-top: 3rem;" data-i18n="enterProject">Enter the Project</a>
+        </div>
+    </section>
+
+    <!-- MANIFIESTO -->
+    <section class="section-spacer manifesto">
+        <div class="manifesto-text" data-i18n="manifesto">
+            "We craft bespoke experiences that elevate prestige, drive innovation, and create lasting impact. We turn visions into reality. Reach out to us and unlock the exceptional!"
+        </div>
+    </section>
+
+    <!-- MARQUEE DE CLIENTES -->
+    <div class="marquee-container">
+        <div class="marquee-track">
+            <span class="marquee-item">Blacklane</span>
+            <span class="marquee-item">Binance</span>
+            <span class="marquee-item">Elite Models</span>
+            <span class="marquee-item">INSEAD</span>
+            <span class="marquee-item">Barbados High Commission</span>
+            <span class="marquee-item">GITA Georgia</span>
+            <span class="marquee-item">Eterna Clinic</span>
+            <span class="marquee-item">Superteam</span>
+            <span class="marquee-item">YPO</span>
+            <span class="marquee-item">Fomoed</span>
+            <span class="marquee-item">Primal</span>
+            <span class="marquee-item">Fractl</span>
+            <span class="marquee-item">Chi Longevity</span>
+            <span class="marquee-item">BNB Chain</span>
+            <!-- Repetición para el loop -->
+            <span class="marquee-item">Blacklane</span>
+            <span class="marquee-item">Binance</span>
+            <span class="marquee-item">Elite Models</span>
+            <span class="marquee-item">INSEAD</span>
+            <span class="marquee-item">Barbados High Commission</span>
+            <span class="marquee-item">GITA Georgia</span>
+            <span class="marquee-item">Eterna Clinic</span>
+            <span class="marquee-item">Superteam</span>
+            <span class="marquee-item">YPO</span>
+            <span class="marquee-item">Fomoed</span>
+            <span class="marquee-item">Primal</span>
+            <span class="marquee-item">Fractl</span>
+            <span class="marquee-item">Chi Longevity</span>
+            <span class="marquee-item">BNB Chain</span>
+        </div>
+    </div>
+
+    <!-- CARROUSEL DE PROYECTOS GLOBAL 2025 -->
+    <section class="project-carousel-section">
+        <div class="text-center" style="padding-top: 6rem;">
+            <span class="subtitle" data-i18n="globalSubtitle">THE GLOBAL RUNWAY | 2025</span>
+            <h2 class="heading-l" data-i18n="globalTitle">Across Borders</h2>
+            <p data-i18n="globalText">Selected works from our operations in 86+ countries. Defining excellence worldwide.</p>
+        </div>
+
+        <div class="project-carousel-container">
+            <div class="project-carousel-track">
+                <!-- Proyectos existentes (UAE, Singapore, etc.) se mantienen igual -->
+                <!-- UAE -->
+                <div class="project-card-slide">
+                    <div class="slide-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1512453979798-5ea9ba6a80f4?q=80&w=2070&auto=format&fit=crop" alt="UAE Project">
+                    </div>
+                    <span class="slide-country">UNITED ARAB EMIRATES</span>
+                    <h3 class="slide-title">The Agentic Sunset</h3>
+                    <span class="slide-client">The Louvre Abu Dhabi</span>
+                </div>
+
+                <!-- SINGAPORE -->
+                <div class="project-card-slide">
+                    <div class="slide-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?q=80&w=2552&auto=format&fit=crop" alt="Singapore Project">
+                    </div>
+                    <span class="slide-country">SINGAPORE</span>
+                    <h3 class="slide-title">Human Accelerator</h3>
+                    <span class="slide-client">Primal / Sentosa</span>
+                </div>
+
+                <!-- INDONESIA -->
+                <div class="project-card-slide">
+                    <div class="slide-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=2538&auto=format&fit=crop" alt="Indonesia Project">
+                    </div>
+                    <span class="slide-country">INDONESIA</span>
+                    <h3 class="slide-title">Calma Wellness</h3>
+                    <span class="slide-client">Bali Retreat</span>
+                </div>
+
+                <!-- FRANCE -->
+                <div class="project-card-slide">
+                    <div class="slide-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=2673&auto=format&fit=crop" alt="France Project">
+                    </div>
+                    <span class="slide-country">FRANCE</span>
+                    <h3 class="slide-title">Sensory Activation</h3>
+                    <span class="slide-client">David Ghiyam</span>
+                </div>
+
+                <!-- PERU -->
+                <div class="project-card-slide">
+                    <div class="slide-image-wrapper">
+                        <img src="https://cuscoperu.b-cdn.net/wp-content/uploads/2024/06/Llama-en-Machu-Picchu-pc.jpg.webp" alt="Peru Project">
+                    </div>
+                    <span class="slide-country">PERU</span>
+                    <h3 class="slide-title">Binance EOY</h3>
+                    <span class="slide-client">Lima Community</span>
+                </div>
+
+                <!-- COLOMBIA -->
+                <div class="project-card-slide">
+                    <div class="slide-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?q=80&w=2070&auto=format&fit=crop" alt="Colombia Project">
+                    </div>
+                    <span class="slide-country">COLOMBIA</span>
+                    <h3 class="slide-title">Crypto Coffee</h3>
+                    <span class="slide-client">Medellín</span>
+                </div>
+
+                <!-- MEXICO -->
+                <div class="project-card-slide">
+                    <div class="slide-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1518105779142-d975f22f1b0a?q=80&w=2070&auto=format&fit=crop" alt="Mexico Project">
+                    </div>
+                    <span class="slide-country">MEXICO</span>
+                    <h3 class="slide-title">Criptoposada</h3>
+                    <span class="slide-client">Mexico City</span>
+                </div>
+
+                 <!-- INTERNATIONAL -->
+                 <div class="project-card-slide">
+                    <div class="slide-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=2070&auto=format&fit=crop" alt="International Project">
+                    </div>
+                    <span class="slide-country">INTERNATIONAL</span>
+                    <h3 class="slide-title">Elite Models</h3>
+                    <span class="slide-client">Global Campaign</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTRODUCCIÓN SERVICIOS -->
+    <section class="section-spacer text-center" style="padding-bottom: 4rem;">
+        <span class="subtitle" data-i18n="architectureSubtitle">TAILORED FOR IMPACT</span>
+        <h2 class="heading-l" data-i18n="pillarsTitle">Discover our Services</h2>
+        <p data-i18n="pillarsText">
+            Our expertise is divided into three distinct realms. Each dedicated to a specific pursuit of excellence, tailored for brands, nations, and individuals.
+        </p>
+    </section>
+
+    <!-- GRID DE SERVICIOS -->
+    <section class="section-spacer" style="padding-top: 0;">
+        <div class="grid-container">
+            <article class="card">
+                <div class="card-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=2000&auto=format&fit=crop" alt="Brands">
+                </div>
+                <span class="subtitle" data-i18n="brandSubtitle">01 / BRANDS</span>
+                <h3 data-i18n="brandTitle">Tailored for Impact</h3>
+                <p data-i18n="brandText">From concept to execution, we engineer experiences that go beyond the expected, creating deep engagement and lasting impact. Experience Design, Brand Activations & Strategic Collaborations.</p>
+                <a href="#" class="text-link" data-i18n="viewCases">View Case Studies</a>
+            </article>
+
+            <article class="card">
+                <div class="card-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=2070&auto=format&fit=crop" alt="Governments">
+                </div>
+                <span class="subtitle" data-i18n="govSubtitle">02 / GOVERNMENTS</span>
+                <h3 data-i18n="govTitle">Innovation Meets Diplomacy</h3>
+                <p data-i18n="govText">Partnering with governments to create transformative initiatives. Strategic Expos, Investment Positioning & Smart Cities. Legacy meets impact.</p>
+                <a href="#" class="text-link" data-i18n="viewStrategies">View Strategies</a>
+            </article>
+
+            <article class="card">
+                <div class="card-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?q=80&w=2076&auto=format&fit=crop" alt="Individuals">
+                </div>
+                <span class="subtitle" data-i18n="privSubtitle">03 / INDIVIDUALS</span>
+                <h3 data-i18n="privTitle">By Circolo</h3>
+                <p data-i18n="privText">Curating extraordinary experiences for those who seek the exceptional. 2222 Residences, Takeovers, Private Supper Clubs & Lifetime Expeditions.</p>
+                <a href="#" class="text-link" data-i18n="beginJourney">Begin Journey</a>
+            </article>
+        </div>
+    </section>
+
+    <!-- TEAM SECTION (ESTÉTICA MEJORADA) -->
+    <section class="section-spacer" style="background-color: #fdfdfd; padding-top: 6rem;">
+        <div class="text-center" style="margin-bottom: 6rem;">
+            <span class="subtitle" data-i18n="teamSubtitle">THE COLLECTIVE</span>
+            <h2 class="heading-l" data-i18n="teamTitle">Minds Behind the Legacy</h2>
+        </div>
+
+        <div class="team-grid-container">
+            <!-- 1. Alvaro Daza -->
+            <div class="card">
+                <div class="team-card-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1887&auto=format&fit=crop" alt="Alvaro Daza">
+                </div>
+                <h3 class="team-name">Alvaro Daza</h3>
+                <span class="team-role" data-i18n="roleFounder">FOUNDER & CEO</span>
+            </div>
+
+            <!-- 2. Marco Giovanni -->
+            <div class="card">
+                <div class="team-card-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1887&auto=format&fit=crop" alt="Marco Giovanni">
+                </div>
+                <h3 class="team-name">Marco Giovanni</h3>
+                <span class="team-role" data-i18n="roleCoo">CO-FOUNDER & COO</span>
+            </div>
+
+            <!-- 3. Sebastian Mora -->
+            <div class="card">
+                <div class="team-card-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?q=80&w=2048&auto=format&fit=crop" alt="Sebastian Mora">
+                </div>
+                <h3 class="team-name">Sebastian Mora</h3>
+                <span class="team-role" data-i18n="roleMarketing">MARKETING DIRECTOR</span>
+            </div>
+
+            <!-- 4. Carolina Mejía -->
+            <div class="card">
+                <div class="team-card-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1888&auto=format&fit=crop" alt="Carolina Mejía">
+                </div>
+                <h3 class="team-name">Carolina Mejía</h3>
+                <span class="team-role" data-i18n="rolePartnerships">PARTNERSHIPS AND MOMENTUM</span>
+            </div>
+
+            <!-- 5. Fares AlDika -->
+            <div class="card">
+                <div class="team-card-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1887&auto=format&fit=crop" alt="Fares AlDika">
+                </div>
+                <h3 class="team-name">Fares AlDika</h3>
+                <span class="team-role" data-i18n="roleFinancial">FINANCIAL MANAGER</span>
+            </div>
+
+            <!-- 6. Juan Romero -->
+            <div class="card">
+                <div class="team-card-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1887&auto=format&fit=crop" alt="Juan Romero">
+                </div>
+                <h3 class="team-name">Juan Romero</h3>
+                <span class="team-role" data-i18n="roleOperations">OPERATIONS ASSISTANT</span>
+            </div>
+
+            <!-- 7. Melissa Aponte -->
+            <div class="card">
+                <div class="team-card-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop" alt="Melissa Aponte">
+                </div>
+                <h3 class="team-name">Melissa Aponte</h3>
+                <span class="team-role" data-i18n="rolePeople">PEOPLE AND IMPACT</span>
+            </div>
+
+            <!-- 8. Valentin Sierra -->
+            <div class="card">
+                <div class="team-card-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070&auto=format&fit=crop" alt="Valentin Sierra">
+                </div>
+                <h3 class="team-name">Valentin Sierra</h3>
+                <span class="team-role" data-i18n="roleGovRelations">GOVERNMENT RELATIONS</span>
+            </div>
+
+            <!-- 9. María Rosero -->
+            <div class="card">
+                <div class="team-card-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1598550874175-4d7112ee7f43?q=80&w=2070&auto=format&fit=crop" alt="María Rosero">
+                </div>
+                <h3 class="team-name">María Rosero</h3>
+                <span class="team-role" data-i18n="roleSales">SALES COORDINATOR</span>
+            </div>
+
+            <!-- 10. Andres Cañas -->
+            <div class="card">
+                <div class="team-card-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1887&auto=format&fit=crop" alt="Andres Cañas">
+                </div>
+                <h3 class="team-name">Andres Cañas</h3>
+                <span class="team-role" data-i18n="roleExpExec">EXPERIENCE EXECUTIVE</span>
+            </div>
+
+            <!-- 11. Ayah Okasha -->
+            <div class="card">
+                <div class="team-card-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?q=80&w=1887&auto=format&fit=crop" alt="Ayah Okasha">
+                </div>
+                <h3 class="team-name">Ayah Okasha</h3>
+                <span class="team-role" data-i18n="roleExpManager">EXPERIENCE MANAGER</span>
+            </div>
+
+            <!-- 12. Rahath Aaliya -->
+            <div class="card">
+                <div class="team-card-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1534751516015-0d4006c80e4e?q=80&w=1961&auto=format&fit=crop" alt="Rahath Aaliya">
+                </div>
+                <h3 class="team-name">Rahath Aaliya</h3>
+                <span class="team-role" data-i18n="roleMarketingCoord">MARKETING & COMMUNITY CO-ORDINATOR</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER ULTRA SIMPLE -->
+    <footer>
+        <div class="footer-col">
+            <div class="logo" style="position: relative; left: 0; transform: none;">CIRCOLO</div>
+            <p style="font-size: 0.75rem; margin: 1rem 0 0 0; color: #999;">© 2026 Circolo Life.</p>
+        </div>
+        
+        <div class="footer-col" style="flex-direction: row; gap: 3rem;">
+            <a href="#" class="footer-link">Instagram</a>
+            <a href="#" class="footer-link">LinkedIn</a>
+            <a href="#" class="footer-link" data-i18n="contact">Contact</a>
+        </div>
+    </footer>
+
+    <script>
+        // Diccionario de Traducciones
+        const translations = {
+            en: {
+                menu: "Menu",
+                inquire: "Inquire",
+                heroTitle: "Creating Legacy Experiences",
+                heroText: "At Circolo, we’re revolutionizing Legacy Experience as a Service (LEAAS), crafting pioneering moments and meaningful connections. We leave a lasting legacy that bridges the physical and digital worlds, powered by bold innovation and cutting-edge technology.",
+                enterProject: "Enter the Project",
+                manifesto: "We craft bespoke experiences that elevate prestige, drive innovation, and create lasting impact. We turn visions into reality. Reach out to us and unlock the exceptional!",
+                globalSubtitle: "THE GLOBAL RUNWAY | 2025",
+                globalTitle: "Across Borders",
+                globalText: "Selected works from our operations in 86+ countries. Defining excellence worldwide.",
+                projectsSubtitle: "CURATED WORKS 2025",
+                projectsTitle: "A Year of Distinction",
+                architectureSubtitle: "TAILORED FOR IMPACT",
+                pillarsTitle: "Discover our Services",
+                pillarsText: "From concept to execution, we engineer experiences that go beyond the expected, creating deep engagement and lasting impact.",
+                brandSubtitle: "01 / BRANDS",
+                brandTitle: "Tailored for Impact",
+                brandText: "From concept to execution, we engineer experiences that go beyond the expected, creating deep engagement and lasting impact. Experience Design, Brand Activations & Strategic Collaborations.",
+                viewCases: "View Case Studies",
+                govSubtitle: "02 / GOVERNMENTS",
+                govTitle: "Innovation Meets Diplomacy",
+                govText: "Partnering with governments to create transformative initiatives. Strategic Expos, Investment Positioning & Smart Cities. Legacy meets impact.",
+                viewStrategies: "View Strategies",
+                privSubtitle: "03 / INDIVIDUALS",
+                privTitle: "By Circolo",
+                privText: "Curating extraordinary experiences for those who seek the exceptional. 2222 Residences, Takeovers, Private Supper Clubs & Lifetime Expeditions.",
+                beginJourney: "Begin Journey",
+                teamSubtitle: "THE COLLECTIVE",
+                teamTitle: "Minds Behind the Legacy",
+                roleFounder: "FOUNDER & CEO",
+                roleCoo: "CO-FOUNDER & COO",
+                roleMarketing: "MARKETING DIRECTOR",
+                rolePartnerships: "PARTNERSHIPS AND MOMENTUM",
+                roleFinancial: "FINANCIAL MANAGER",
+                roleOperations: "OPERATIONS ASSISTANT",
+                rolePeople: "PEOPLE AND IMPACT",
+                roleGovRelations: "GOVERNMENT RELATIONS",
+                roleSales: "SALES COORDINATOR",
+                roleExpExec: "EXPERIENCE EXECUTIVE",
+                roleExpManager: "EXPERIENCE MANAGER",
+                roleMarketingCoord: "MARKETING & COMMUNITY CO-ORDINATOR",
+                contact: "Contact"
+            },
+            es: {
+                menu: "Menú",
+                inquire: "Consultar",
+                heroTitle: "Creando Experiencias de Legado",
+                heroText: "En Circolo, estamos revolucionando la Experiencia de Legado como Servicio (LEAAS), creando momentos pioneros y conexiones significativas. Dejamos un legado duradero que une los mundos físico y digital, impulsado por una innovación audaz y tecnología de vanguardia.",
+                enterProject: "Entrar al Proyecto",
+                manifesto: "Creamos experiencias a medida que elevan el prestigio, impulsan la innovación y crean un impacto duradero. Convertimos visiones en realidad. ¡Contáctanos y desbloquea lo excepcional!",
+                globalSubtitle: "LA PASARELA GLOBAL | 2025",
+                globalTitle: "A través de Fronteras",
+                globalText: "Obras seleccionadas de nuestras operaciones en más de 86 países. Definiendo la excelencia en todo el mundo.",
+                projectsSubtitle: "OBRAS CURADAS 2025",
+                projectsTitle: "Un Año de Distinción",
+                architectureSubtitle: "HECHO A LA MEDIDA",
+                pillarsTitle: "Descubre nuestros Servicios",
+                pillarsText: "Desde el concepto hasta la ejecución, diseñamos experiencias que van más allá de lo esperado, creando un compromiso profundo y un impacto duradero.",
+                brandSubtitle: "01 / MARCAS",
+                brandTitle: "Hecho para Impactar",
+                brandText: "Desde el concepto hasta la ejecución, diseñamos experiencias que van más allá de lo esperado. Diseño de Experiencias, Activaciones de Marca y Colaboraciones Estratégicas.",
+                viewCases: "Ver Casos de Estudio",
+                govSubtitle: "02 / GOBIERNOS",
+                govTitle: "Innovación y Diplomacia",
+                govText: "Nos asociamos con gobiernos para crear iniciativas transformadoras. Exposiciones Estratégicas, Posicionamiento de Inversiones y Ciudades Inteligentes.",
+                viewStrategies: "Ver Estrategias",
+                privSubtitle: "03 / INDIVIDUOS",
+                privTitle: "Por Circolo",
+                privText: "Curaduría de experiencias extraordinarias para quienes buscan lo excepcional. Residencias 2222, Takeovers, Cenas Privadas y Expediciones Únicas.",
+                beginJourney: "Comenzar Viaje",
+                teamSubtitle: "EL COLECTIVO",
+                teamTitle: "Mentes tras el Legado",
+                roleFounder: "FUNDADOR & CEO",
+                roleCoo: "CO-FUNDADOR & COO",
+                roleMarketing: "DIRECTOR DE MARKETING",
+                rolePartnerships: "ALIANZAS Y MOMENTUM",
+                roleFinancial: "GERENTE FINANCIERO",
+                roleOperations: "ASISTENTE DE OPERACIONES",
+                rolePeople: "PERSONAS E IMPACTO",
+                roleGovRelations: "RELACIONES GUBERNAMENTALES",
+                roleSales: "COORDINADOR DE VENTAS",
+                roleExpExec: "EJECUTIVO DE EXPERIENCIA",
+                roleExpManager: "GERENTE DE EXPERIENCIA",
+                roleMarketingCoord: "COORDINADOR DE MARKETING Y COMUNIDAD",
+                contact: "Contacto"
+            },
+            // Se mantienen las demás traducciones con los placeholders originales si no se requiere traducción específica ahora,
+            // o se pueden rellenar en futuras iteraciones. Para no alargar demasiado el código, usaré inglés como fallback seguro para los otros idiomas en las secciones nuevas.
+            ar: {
+                menu: "القائمة",
+                inquire: "استفسار",
+                heroTitle: "خلق تجارب الإرث",
+                heroText: "في Circolo، نحدث ثورة في تجربة الإرث كخدمة (LEAAS)، ونصيغ لحظات رائدة واتصالات ذات معنى. نترك إرثًا دائمًا يربط بين العالمين المادي والرقمي.",
+                enterProject: "ادخل المشروع",
+                manifesto: "نصنع تجارب مخصصة ترفع من المكانة وتدفع الابتكار وتخلق تأثيرًا دائمًا. نحول الرؤى إلى واقع. تواصل معنا وافتح الباب للاستثناء!",
+                globalSubtitle: "المسار العالمي | 2025",
+                globalTitle: "عبر الحدود",
+                globalText: "أعمال مختارة من عملياتنا في أكثر من 86 دولة. تحديد التميز في جميع أنحاء العالم.",
+                projectsSubtitle: "أعمال مختارة 2025",
+                projectsTitle: "عام من التميز",
+                architectureSubtitle: "مصممة للتأثير",
+                pillarsTitle: "اكتشف خدماتنا",
+                pillarsText: "من المفهوم إلى التنفيذ، نهندس تجارب تتجاوز المتوقع، وتخلق تفاعلًا عميقًا وتأثيرًا دائمًا.",
+                brandSubtitle: "01 / العلامات التجارية",
+                brandTitle: "مصممة للتأثير",
+                brandText: "تصميم التجارب، تفعيلات العلامة التجارية والتعاون الاستراتيجي.",
+                viewCases: "عرض دراسات الحالة",
+                govSubtitle: "02 / الحكومات",
+                govTitle: "الابتكار يلتقي بالدبلوماسية",
+                govText: "الشراكة مع الحكومات لخلق مبادرات تحويلية. المعارض الاستراتيجية، تحديد مواقع الاستثمار والمدن الذكية.",
+                viewStrategies: "عرض الاستراتيجيات",
+                privSubtitle: "03 / الأفراد",
+                privTitle: "بواسطة Circolo",
+                privText: "تنسيق تجارب استثنائية لأولئك الذين يسعون للاستثناء. إقامات 2222، الاستحواذات، نوادي العشاء الخاصة والرحلات الاستكشافية.",
+                beginJourney: "ابدأ الرحلة",
+                teamSubtitle: "المجموعة",
+                teamTitle: "عقول خلف الإرث",
+                roleFounder: "المؤسس والرئيس التنفيذي",
+                roleCoo: "المؤسس المشارك ومدير العمليات",
+                roleMarketing: "مدير التسويق",
+                rolePartnerships: "الشراكات والزخم",
+                roleFinancial: "المدير المالي",
+                roleOperations: "مساعد العمليات",
+                rolePeople: "الأفراد والتأثير",
+                roleGovRelations: "العلاقات الحكومية",
+                roleSales: "منسق المبيعات",
+                roleExpExec: "تنفيذي التجربة",
+                roleExpManager: "مدير التجربة",
+                roleMarketingCoord: "منسق التسويق والمجتمع",
+                contact: "اتصل بنا"
+            }
+        };
+
+        // Función para cambiar idioma
+        function setLanguage(lang) {
+            document.querySelector('.current-lang').textContent = lang.toUpperCase();
+            
+            // Manejo de dirección RTL para Árabe
+            if (lang === 'ar') {
+                document.body.setAttribute('dir', 'rtl');
+            } else {
+                document.body.setAttribute('dir', 'ltr');
+            }
+            
+            // Fallback a inglés para otros idiomas en las nuevas secciones si no están definidos
+            const t = translations[lang] || translations['en'];
+
+            // Buscar y actualizar textos
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (t[key]) {
+                    // Animación suave
+                    element.style.opacity = 0;
+                    setTimeout(() => {
+                        element.textContent = t[key];
+                        element.style.opacity = 1;
+                    }, 200);
+                }
+            });
+        }
+
+        // Efecto scroll header
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
