@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Circolo Life | Pure Legacy</title>
-    <!-- Fuentes: Cormorant Garamond (Editorial fina) y Inter (Minimalismo suizo) -->
+    <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@200;300;400;800;900&display=swap" rel="stylesheet">
     
     <style>
-        /* --- ESTÉTICA "TOTAL WHITE" (Galería de Arte / Alta Costura) --- */
+        /* --- ESTÉTICA "TOTAL WHITE" --- */
         :root {
             --bg-color: #ffffff;
             --text-color: #111111;
@@ -19,9 +19,7 @@
             --font-sans: 'Inter', sans-serif;
         }
 
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             background-color: var(--bg-color);
@@ -30,50 +28,25 @@
             padding: 0;
             font-family: var(--font-sans);
             font-weight: 300;
-            line-height: 1.8;
+            line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
-            transition: direction 0.3s ease; /* Transición suave para RTL */
+            transition: direction 0.3s ease;
         }
 
-        /* Soporte RTL para Árabe */
-        body[dir="rtl"] {
-            font-family: 'Tahoma', 'Arial', sans-serif; /* Fallback seguro para árabe */
-        }
-        
-        body[dir="rtl"] .main-header {
-            flex-direction: row-reverse;
-        }
-
-        body[dir="rtl"] .logo {
-            letter-spacing: 0; /* El espaciado no funciona igual en árabe */
-            font-size: 1.6rem;
-        }
-
-        body[dir="rtl"] .subtitle {
-            letter-spacing: 0;
-        }
-        
-        body[dir="rtl"] .card {
-            text-align: right;
-            align-items: flex-end;
-        }
-
-        body[dir="rtl"] .lang-dropdown {
-            right: auto;
-            left: 0;
-            text-align: left;
-        }
-
-        body[dir="rtl"] a.text-link::after {
-            transform-origin: bottom left;
-            left: auto;
-            right: 0;
-        }
-        
-        body[dir="rtl"] a.text-link:hover::after {
-            transform-origin: bottom right;
-        }
+        /* Soporte RTL */
+        body[dir="rtl"] { font-family: 'Tahoma', 'Arial', sans-serif; }
+        body[dir="rtl"] .main-header { flex-direction: row-reverse; }
+        body[dir="rtl"] .logo { letter-spacing: 0; font-size: 1.4rem; }
+        body[dir="rtl"] .subtitle { letter-spacing: 0; }
+        body[dir="rtl"] .card { text-align: right; align-items: flex-end; }
+        body[dir="rtl"] .lang-dropdown { right: auto; left: 0; text-align: left; }
+        body[dir="rtl"] a.text-link::after { transform-origin: bottom left; left: auto; right: 0; }
+        body[dir="rtl"] a.text-link:hover::after { transform-origin: bottom right; }
+        body[dir="rtl"] .press-row { flex-direction: row-reverse; }
+        body[dir="rtl"] .press-date, body[dir="rtl"] .press-source { text-align: left; }
+        body[dir="rtl"] .press-headline { text-align: right; }
+        body[dir="rtl"] .whatsapp-float { left: 30px; right: auto; }
 
         /* --- TIPOGRAFÍA --- */
         h1, h2, h3, h4, h5 {
@@ -85,47 +58,47 @@
 
         .subtitle {
             font-family: var(--font-sans);
-            font-size: 0.65rem;
+            font-size: 0.55rem;
             text-transform: uppercase;
-            letter-spacing: 0.3em;
-            margin-bottom: 2rem;
+            letter-spacing: 0.25em;
+            margin-bottom: 1.5rem;
             display: block;
             color: var(--accent-color);
         }
 
         .heading-xl {
-            font-size: 4.5rem;
-            line-height: 1;
-            margin-bottom: 2rem;
-            letter-spacing: -0.02em;
+            font-size: 2.8rem;
+            line-height: 1.1;
+            margin-bottom: 0;
+            letter-spacing: -0.01em;
         }
 
         .heading-l {
-            font-size: 3rem;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
             letter-spacing: -0.01em;
         }
 
         p {
-            font-size: 1.05rem;
-            max-width: 650px;
+            font-size: 0.9rem;
+            max-width: 550px;
             margin: 0 auto;
             color: #444;
-            line-height: 1.9;
+            line-height: 1.8;
         }
 
-        /* Enlaces sutiles */
+        /* Enlaces */
         a.text-link {
             color: var(--text-color);
             text-decoration: none;
             font-family: var(--font-sans);
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             text-transform: uppercase;
             letter-spacing: 0.15em;
             position: relative;
-            padding-bottom: 5px;
-            margin-top: 2rem;
+            padding-bottom: 3px;
+            margin-top: 1.5rem;
             display: inline-block;
             cursor: pointer;
         }
@@ -150,7 +123,7 @@
 
         /* --- HEADER --- */
         .main-header {
-            padding: 2.5rem 4rem;
+            padding: 1.2rem 3rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -163,91 +136,88 @@
         }
 
         .main-header.scrolled {
-            background-color: rgba(255, 255, 255, 0.95);
-            padding: 1.5rem 4rem;
+            background-color: rgba(255, 255, 255, 0.98);
+            padding: 0.8rem 3rem;
             backdrop-filter: blur(5px);
             box-shadow: 0 1px 0 rgba(0,0,0,0.02);
         }
 
         .logo {
             font-family: var(--font-sans);
-            font-size: 1.4rem; /* Reducido ligeramente para sutileza */
-            letter-spacing: 0.35em; /* Aumentado para más aire y elegancia */
+            font-size: 1rem;
+            letter-spacing: 0.3em;
             text-transform: uppercase;
-            font-weight: 400; /* Peso regular, mucho más limpio */
-            color: #2a2a2a; /* Gris muy oscuro, suave, no negro puro */
+            font-weight: 400;
+            color: #2a2a2a;
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            text-shadow: none; /* Eliminamos sombras para limpieza total */
         }
 
         .header-left { display: flex; align-items: center; }
-        .header-right { display: flex; align-items: center; gap: 2rem; }
+        .header-right { display: flex; align-items: center; gap: 1.5rem; }
 
         .menu-trigger {
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             text-transform: uppercase;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.1em;
             cursor: pointer;
             color: var(--text-color);
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
         }
 
         .cta-btn {
             background: transparent;
             color: var(--text-color);
-            padding: 10px 0;
+            padding: 8px 0;
             font-family: var(--font-sans);
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             text-transform: uppercase;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.1em;
             border: none;
             border-bottom: 1px solid transparent;
             cursor: pointer;
             transition: border-color 0.3s;
         }
 
-        .cta-btn:hover {
-            border-bottom: 1px solid var(--text-color);
-        }
+        .cta-btn:hover { border-bottom: 1px solid var(--text-color); }
 
         /* --- LANGUAGE SELECTOR --- */
         .lang-selector {
             position: relative;
             font-family: var(--font-sans);
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             cursor: pointer;
-            padding: 10px 0;
-            min-width: 30px; /* Espacio para el texto */
-            z-index: 1001; /* Asegurar que esté por encima */
+            padding: 8px 0;
+            min-width: 25px;
+            z-index: 1001;
         }
 
         .current-lang {
             display: flex;
             align-items: center;
-            gap: 5px;
-            justify-content: flex-end; /* Alinear a la derecha */
+            gap: 4px;
+            justify-content: flex-end;
         }
 
         .lang-dropdown {
             position: absolute;
             top: 100%;
-            right: 0; /* Alinear a la derecha por defecto */
+            right: 0;
             background-color: #fff;
-            min-width: 120px;
-            padding: 1rem 0;
+            min-width: 100px;
+            padding: 0.8rem 0;
             opacity: 0;
             visibility: hidden;
             transform: translateY(10px);
             transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
             border: 1px solid rgba(0,0,0,0.03);
-            text-align: right; /* Texto alineado a la derecha */
+            text-align: right;
         }
 
         .lang-selector:hover .lang-dropdown {
@@ -258,16 +228,15 @@
 
         .lang-dropdown span {
             display: block;
-            padding: 5px 1.5rem;
+            padding: 4px 1.2rem;
             color: #999;
             text-decoration: none;
             transition: color 0.2s;
             cursor: pointer;
+            font-size: 0.65rem;
         }
 
-        .lang-dropdown span:hover {
-            color: var(--text-color);
-        }
+        .lang-dropdown span:hover { color: var(--text-color); }
 
         /* --- HERO SECTION --- */
         .hero {
@@ -280,54 +249,89 @@
             padding: 0 2rem;
             position: relative;
             background-color: #fff;
+            overflow: hidden; 
         }
 
         .hero-image-container {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: 1;
-            opacity: 0.2;
+        }
+
+        .hero-bg-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
             filter: grayscale(100%);
-            background-image: url('https://images.unsplash.com/photo-1492552181161-62217fc3076d?q=80&w=2699&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            transition: opacity 2s ease;
+            opacity: 0.2; 
+            transition: opacity 2s ease, transform 6s ease;
         }
         
-        .hero:hover .hero-image-container { opacity: 0.4; }
-        .hero-content { position: relative; z-index: 2; max-width: 900px; }
+        .hero:hover .hero-bg-img { 
+            opacity: 0.5; 
+            transform: scale(1.05);
+        }
+        
+        .hero-content { position: relative; z-index: 2; max-width: 1000px; }
 
         /* --- SECTIONS --- */
-        .section-spacer { padding: 10rem 4rem; }
+        .section-spacer { padding: 4rem 3rem; }
         .text-center { text-align: center; }
 
-        /* --- TEXT MARQUEE (CLIENTS) --- */
+        /* --- MANIFIESTO --- */
+        .manifesto {
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+        }
+
+        .manifesto-text {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            text-align: center;
+            line-height: 1.5;
+            max-width: 700px;
+            color: #333;
+            margin-bottom: 2rem;
+        }
+
+        /* --- MARQUEE --- */
         .marquee-container {
             width: 100%;
             overflow: hidden;
-            padding: 4rem 0;
+            padding: 2rem 0;
             border-top: 1px solid #f9f9f9;
             border-bottom: 1px solid #f9f9f9;
             background: #fff;
+            white-space: nowrap;
         }
         
         .marquee-track {
-            display: flex;
-            width: fit-content;
-            animation: scroll 40s linear infinite;
+            display: inline-flex;
+            width: max-content;
+            animation: scrollMarquee 80s linear infinite;
         }
         
         .marquee-item {
             font-family: var(--font-sans);
-            font-size: 0.9rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.15em;
             color: #999;
             padding: 0 3rem;
-            white-space: nowrap;
         }
 
-        /* --- PROJECT CAROUSEL (IMAGES) --- */
+        @keyframes scrollMarquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* --- PROJECT CAROUSEL --- */
         .project-carousel-section {
             padding: 0;
             overflow: hidden;
@@ -336,24 +340,22 @@
 
         .project-carousel-container {
             width: 100%;
-            padding: 6rem 0;
+            padding: 3rem 0;
+            overflow: hidden;
         }
 
         .project-carousel-track {
             display: flex;
-            gap: 2rem;
-            width: fit-content;
-            animation: scroll 60s linear infinite;
-            padding-left: 4rem; /* Initial spacing */
+            gap: 1.5rem;
+            width: max-content;
+            animation: scrollProjects 50s linear infinite;
+            padding-left: 0;
         }
 
-        /* Pause animation on hover for UX */
-        .project-carousel-track:hover {
-            animation-play-state: paused;
-        }
+        .project-carousel-track:hover { animation-play-state: paused; }
 
         .project-card-slide {
-            flex: 0 0 450px; /* Fixed width for consistency */
+            flex: 0 0 260px;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
@@ -362,15 +364,13 @@
             transition: opacity 0.3s;
         }
 
-        .project-card-slide:hover {
-            opacity: 0.8;
-        }
+        .project-card-slide:hover { opacity: 0.8; }
 
         .slide-image-wrapper {
             width: 100%;
             aspect-ratio: 4/3;
             overflow: hidden;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.8rem;
             background-color: #eee;
         }
 
@@ -389,50 +389,41 @@
 
         .slide-country {
             font-family: var(--font-sans);
-            font-size: 0.65rem;
+            font-size: 0.55rem;
             text-transform: uppercase;
             letter-spacing: 0.2em;
             color: var(--accent-color);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
         }
 
         .slide-title {
             font-family: var(--font-serif);
-            font-size: 1.8rem;
-            margin-bottom: 0.2rem;
+            font-size: 1.2rem;
+            margin-bottom: 0.1rem;
             font-weight: 300;
             color: var(--text-color);
         }
 
         .slide-client {
             font-family: var(--font-sans);
-            font-size: 0.8rem;
-            color: #666;
-        }
-        
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-250px * 14)); } /* Aproximación de desplazamiento */
+            font-size: 0.65rem;
+            color: #777;
         }
 
-        /* --- GRID --- */
+        @keyframes scrollProjects {
+            0% { transform: translateX(0); }
+            /* Ajustado a 7 items para mantener el bucle perfecto */
+            100% { transform: translateX(calc(-1 * (260px + 1.5rem) * 7)); }
+        }
+
+        /* --- GRID DE SERVICIOS (PRODUCTOS) --- */
         .grid-container {
-            max-width: 1600px;
+            max-width: 1100px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 6rem;
-            padding: 0 4rem;
-        }
-
-        /* GRID ESPECÍFICO PARA EL EQUIPO */
-        .team-grid-container {
-            max-width: 1600px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(6, 1fr); /* 6 Columnas para imágenes más pequeñas */
-            gap: 3rem; /* Espacio ajustado */
-            padding: 0 4rem;
+            gap: 2.5rem;
+            padding: 0 2rem;
         }
 
         .card {
@@ -446,9 +437,9 @@
         .card-image-wrapper {
             width: 100%;
             overflow: hidden;
-            margin-bottom: 2.5rem;
+            margin-bottom: 1.2rem;
             aspect-ratio: 3/4;
-            background-color: #f9f9f9;
+            background-color: #f0f0f0;
         }
 
         .card img {
@@ -465,29 +456,316 @@
         }
 
         .card h3 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            margin-bottom: 0.4rem;
             font-weight: 300;
         }
 
-        .card p {
-            font-size: 0.95rem;
+        /* --- PRESS SECTION (Editorial Grid) --- */
+        .press-section {
+            background-color: #fff;
+            padding: 6rem 4rem;
+            border-top: 1px solid #f9f9f9;
+        }
+
+        .press-grid {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 Columnas */
+            gap: 2rem;
+        }
+
+        /* Clase para ocultar noticias extra */
+        .press-hidden { display: none; }
+        .press-visible { display: flex; animation: fadeInPress 0.6s ease forwards; }
+
+        @keyframes fadeInPress {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .press-card {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .press-card:hover { opacity: 0.9; transform: translateY(-5px); }
+
+        .press-image-wrapper {
+            width: 100%;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            margin-bottom: 1.2rem;
+            background-color: #f5f5f5;
+            position: relative;
+        }
+
+        .press-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%); 
+            transition: all 0.6s ease;
+        }
+
+        .press-card:hover .press-image-wrapper img {
+            filter: grayscale(0%);
+            transform: scale(1.03);
+        }
+
+        .press-meta {
+            font-family: var(--font-sans);
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #999;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .press-title {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            font-weight: 300;
+            line-height: 1.3;
+            margin: 0 0 0.8rem 0;
+            min-height: 3rem;
+        }
+
+        .press-description {
+            font-family: var(--font-sans);
+            font-size: 0.7rem;
             color: #666;
-            margin: 0;
-            max-width: 90%;
-            font-weight: 300;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
-        /* --- TEAM SPECIFIC STYLES --- */
+        .press-link-text {
+            font-family: var(--font-sans);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-bottom: 1px solid #ddd;
+            width: fit-content;
+            padding-bottom: 2px;
+            margin-top: auto;
+        }
+
+        .press-expand-container { text-align: center; margin-top: 4rem; }
+        .press-expand-btn {
+            background: transparent;
+            border: 1px solid #e0e0e0;
+            padding: 12px 30px;
+            font-family: var(--font-sans);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .press-expand-btn:hover { border-color: var(--text-color); background-color: var(--text-color); color: #fff; }
+
+        /* --- INSTAGRAM STORIES --- */
+        .stories-section {
+            padding: 4rem 0;
+            background-color: #fafafa;
+        }
+
+        .stories-scroll-wrapper {
+            display: flex;
+            overflow-x: auto;
+            gap: 1rem;
+            padding: 0 2rem 1.5rem 2rem;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+        }
+        
+        .stories-scroll-wrapper::-webkit-scrollbar { display: none; }
+
+        .story-card {
+            flex: 0 0 180px;
+            aspect-ratio: 9/16;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 2px;
+            scroll-snap-align: start;
+            background-color: #eee;
+        }
+
+        .story-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: transform 0.6s ease;
+        }
+
+        .story-card:hover .story-img {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+
+        .story-play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 35px;
+            height: 35px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(4px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+
+        .story-play-icon svg {
+            width: 12px;
+            height: 12px;
+            fill: #fff;
+            margin-left: 2px;
+        }
+
+        .story-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .story-title {
+            color: #fff;
+            font-family: var(--font-sans);
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* --- WHATSAPP FLOATING BUTTON (LUJO SILENCIOSO) --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: transparent; /* Fondo transparente para minimalismo */
+            border: 1px solid var(--text-color); /* Borde fino elegante */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            z-index: 2000;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            backdrop-filter: blur(5px);
+        }
+
+        .whatsapp-float:hover {
+            background-color: var(--text-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .whatsapp-icon {
+            width: 24px;
+            height: 24px;
+            fill: var(--text-color);
+            transition: fill 0.3s ease;
+        }
+
+        .whatsapp-float:hover .whatsapp-icon {
+            fill: #fff; /* Invertir color al hover */
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: #fff;
+            width: 90%;
+            max-width: 400px;
+            aspect-ratio: 9/16;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #fff;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 2001;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        iframe.instagram-embed { width: 100%; height: 100%; border: none; }
+
+        /* --- TEAM GRID --- */
+        .team-grid-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 1.5rem;
+            padding: 0 2rem;
+        }
+
+        .team-card-link {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+        }
+
         .team-card-image-wrapper {
             width: 100%;
             overflow: hidden;
-            margin-bottom: 1.5rem;
-            aspect-ratio: 3/4; /* Formato retrato estándar */
+            margin-bottom: 0.8rem;
+            aspect-ratio: 3/4;
             background-color: #fdfdfd;
-            /* Margen interno para que la foto no toque los bordes (Efecto Passepartout) */
-            padding: 10px; 
-            box-sizing: border-box; 
+            padding: 6px;
+            box-sizing: border-box;
+            position: relative;
         }
 
         .team-card-image-wrapper img {
@@ -498,45 +776,29 @@
             transition: all 0.6s ease;
         }
 
-        .card:hover .team-card-image-wrapper img {
-            filter: grayscale(0%);
-            transform: scale(1.02);
+        .linkedin-icon {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            width: 24px;
+            height: 24px;
+            fill: #fff;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+            z-index: 2;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
         }
 
-        .team-name {
-            font-size: 1rem; /* Nombre aún más pequeño */
-            margin-bottom: 0.3rem;
-            font-weight: 400;
-            color: var(--text-color);
-        }
-        
-        .team-role {
-            font-family: var(--font-sans);
-            font-size: 0.55rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: #999;
-        }
+        .team-card-link:hover .team-card-image-wrapper img { filter: grayscale(0%); transform: scale(1.02); }
+        .team-card-link:hover .linkedin-icon { opacity: 1; transform: translateY(0); }
 
-        .manifesto {
-            background-color: #fdfdfd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .manifesto-text {
-            font-family: var(--font-serif);
-            font-size: 2rem; /* Ajustado para el nuevo texto más largo */
-            text-align: center;
-            line-height: 1.4;
-            max-width: 900px;
-            color: #222;
-        }
+        .team-name { font-size: 0.8rem; margin-bottom: 0.2rem; font-weight: 400; color: var(--text-color); }
+        .team-role { font-family: var(--font-sans); font-size: 0.45rem; text-transform: uppercase; letter-spacing: 0.15em; color: #999; }
 
         /* --- FOOTER --- */
         footer {
-            padding: 6rem 4rem;
+            padding: 3rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
@@ -544,14 +806,9 @@
             margin-top: 0;
         }
 
-        .footer-col {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
+        .footer-col { display: flex; flex-direction: column; gap: 0.6rem; }
         .footer-link {
-            font-size: 0.8rem;
+            font-size: 0.65rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             color: #111;
@@ -559,48 +816,42 @@
             opacity: 0.6;
             transition: opacity 0.3s;
         }
-
         .footer-link:hover { opacity: 1; }
 
-        @media (max-width: 1200px) {
-            .team-grid-container { grid-template-columns: repeat(4, 1fr); }
-        }
-
         @media (max-width: 1024px) {
-            .heading-xl { font-size: 3.5rem; }
-            .grid-container { grid-template-columns: 1fr; gap: 4rem; }
-            .team-grid-container { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
-            .section-spacer { padding: 6rem 2rem; }
-            .manifesto-text { font-size: 1.8rem; }
-            footer { flex-direction: column; align-items: center; gap: 3rem; text-align: center; }
-            .main-header { padding: 1.5rem 2rem; }
-            .logo { position: relative; left: 0; transform: none; margin-bottom: 1rem; font-size: 1.5rem; }
-            .main-header { flex-direction: column; gap: 1rem; }
-            .header-right { gap: 1rem; }
-            .project-carousel-track { animation: scroll 30s linear infinite; }
+            .heading-xl { font-size: 2.2rem; }
+            .grid-container { grid-template-columns: 1fr; gap: 2rem; }
+            .team-grid-container { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+            .press-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; padding: 0 1rem; }
+            .section-spacer { padding: 3rem 1.5rem; }
+            footer { flex-direction: column; align-items: center; gap: 1.5rem; text-align: center; }
+            .main-header { padding: 0.8rem 1rem; }
+        }
+        
+        @media (max-width: 768px) {
+             .team-grid-container { grid-template-columns: repeat(2, 1fr); }
+             .press-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <!-- HEADER FLOTANTE -->
+    <!-- HEADER -->
     <header class="main-header" id="header">
         <div class="header-left">
             <div class="menu-trigger">
                 <span data-i18n="menu">Menu</span>
             </div>
         </div>
-        
         <div class="logo">CIRCOLO</div>
-        
         <div class="header-right">
             <div class="lang-selector">
                 <span class="current-lang">EN</span>
                 <div class="lang-dropdown">
                     <span onclick="setLanguage('en')">EN</span>
-                    <span onclick="setLanguage('ar')">AR</span> <!-- Árabe (Principal) -->
-                    <span onclick="setLanguage('ru')">RU</span> <!-- Ruso -->
-                    <span onclick="setLanguage('zh')">ZH</span> <!-- Chino -->
+                    <span onclick="setLanguage('ar')">AR</span>
+                    <span onclick="setLanguage('ru')">RU</span>
+                    <span onclick="setLanguage('zh')">ZH</span>
                     <span onclick="setLanguage('es')">ES</span>
                     <span onclick="setLanguage('pt')">PT</span>
                     <span onclick="setLanguage('fr')">FR</span>
@@ -611,82 +862,120 @@
         </div>
     </header>
 
-    <!-- HERO MINIMALISTA -->
+    <!-- HERO (With Fallback) -->
     <section class="hero">
-        <div class="hero-image-container"></div>
+        <div class="hero-image-container">
+            <img class="hero-bg-img" 
+                 src="https://uploads.onecompiler.io/4474z9257/44ad3qvge/DSCF0074.webp" 
+                 onerror="this.src='https://images.unsplash.com/photo-1542259646-cd2628ebc950?q=80&w=1974&auto=format&fit=crop'"
+                 alt="Circolo Legacy">
+        </div>
         <div class="hero-content">
             <h1 class="heading-xl" style="color: #111;" data-i18n="heroTitle">Creating Legacy Experiences</h1>
-            <p style="color: #444; max-width: 600px;" data-i18n="heroText">
-                At Circolo, we’re revolutionizing Legacy Experience as a Service (LEAAS), crafting pioneering moments and meaningful connections. We leave a lasting legacy that bridges the physical and digital worlds, powered by bold innovation and cutting-edge technology.
-            </p>
-            <a href="#" class="text-link" style="margin-top: 3rem;" data-i18n="enterProject">Enter the Project</a>
         </div>
     </section>
 
     <!-- MANIFIESTO -->
     <section class="section-spacer manifesto">
-        <div class="manifesto-text" data-i18n="manifesto">
-            "We craft bespoke experiences that elevate prestige, drive innovation, and create lasting impact. We turn visions into reality. Reach out to us and unlock the exceptional!"
-        </div>
+        <p class="manifesto-text" data-i18n="manifestoText">
+            At Circolo, we’re revolutionizing Legacy Experience as a Service (LEAAS). Bridging the physical and digital worlds with bold innovation, we craft bespoke moments that elevate prestige, drive innovation, and create lasting impact. Turning visions into reality.
+        </p>
+        <a href="#" class="text-link" data-i18n="enterProject">Unlock the Exceptional</a>
     </section>
 
-    <!-- MARQUEE DE CLIENTES -->
+    <!-- CLIENT MARQUEE -->
     <div class="marquee-container">
         <div class="marquee-track">
+            <!-- SET 1: LISTA COMPLETA -->
             <span class="marquee-item">Blacklane</span>
-            <span class="marquee-item">Binance</span>
-            <span class="marquee-item">Elite Models</span>
-            <span class="marquee-item">INSEAD</span>
+            <span class="marquee-item">Daos Hub</span>
+            <span class="marquee-item">New Tribe Capital</span>
+            <span class="marquee-item">Pitch Storm</span>
+            <span class="marquee-item">IXI</span>
             <span class="marquee-item">Barbados High Commission</span>
-            <span class="marquee-item">GITA Georgia</span>
-            <span class="marquee-item">Eterna Clinic</span>
+            <span class="marquee-item">Perfect Live</span>
+            <span class="marquee-item">INSEAD</span>
+            <span class="marquee-item">Elite Models</span>
+            <span class="marquee-item">OPUS</span>
             <span class="marquee-item">Superteam</span>
-            <span class="marquee-item">YPO</span>
-            <span class="marquee-item">Fomoed</span>
+            <span class="marquee-item">AKUA</span>
+            <span class="marquee-item">David Ghiyam</span>
+            <span class="marquee-item">Beyond Project</span>
+            <span class="marquee-item">Calma</span>
+            <span class="marquee-item">Pyxis Events</span>
             <span class="marquee-item">Primal</span>
+            <span class="marquee-item">Degents</span>
             <span class="marquee-item">Fractl</span>
-            <span class="marquee-item">Chi Longevity</span>
+            <span class="marquee-item">Intercognitive</span>
+            <span class="marquee-item">Fomoed</span>
+            <span class="marquee-item">YPO</span>
+            <span class="marquee-item">Beewild</span>
+            <span class="marquee-item">GITA</span>
+            <span class="marquee-item">Eterna Clinic</span>
+            <span class="marquee-item">Latina Design Studio</span>
+            <span class="marquee-item">Vesica Project</span>
+            <span class="marquee-item">Binance</span>
+            <span class="marquee-item">Alkalime</span>
             <span class="marquee-item">BNB Chain</span>
-            <!-- Repetición para el loop -->
+            <span class="marquee-item">Chi Longevity Services</span>
+
+            <!-- SET 2: DUPLICADO EXACTO -->
             <span class="marquee-item">Blacklane</span>
-            <span class="marquee-item">Binance</span>
-            <span class="marquee-item">Elite Models</span>
-            <span class="marquee-item">INSEAD</span>
+            <span class="marquee-item">Daos Hub</span>
+            <span class="marquee-item">New Tribe Capital</span>
+            <span class="marquee-item">Pitch Storm</span>
+            <span class="marquee-item">IXI</span>
             <span class="marquee-item">Barbados High Commission</span>
-            <span class="marquee-item">GITA Georgia</span>
-            <span class="marquee-item">Eterna Clinic</span>
+            <span class="marquee-item">Perfect Live</span>
+            <span class="marquee-item">INSEAD</span>
+            <span class="marquee-item">Elite Models</span>
+            <span class="marquee-item">OPUS</span>
             <span class="marquee-item">Superteam</span>
-            <span class="marquee-item">YPO</span>
-            <span class="marquee-item">Fomoed</span>
+            <span class="marquee-item">AKUA</span>
+            <span class="marquee-item">David Ghiyam</span>
+            <span class="marquee-item">Beyond Project</span>
+            <span class="marquee-item">Calma</span>
+            <span class="marquee-item">Pyxis Events</span>
             <span class="marquee-item">Primal</span>
+            <span class="marquee-item">Degents</span>
             <span class="marquee-item">Fractl</span>
-            <span class="marquee-item">Chi Longevity</span>
+            <span class="marquee-item">Intercognitive</span>
+            <span class="marquee-item">Fomoed</span>
+            <span class="marquee-item">YPO</span>
+            <span class="marquee-item">Beewild</span>
+            <span class="marquee-item">GITA</span>
+            <span class="marquee-item">Eterna Clinic</span>
+            <span class="marquee-item">Latina Design Studio</span>
+            <span class="marquee-item">Vesica Project</span>
+            <span class="marquee-item">Binance</span>
+            <span class="marquee-item">Alkalime</span>
             <span class="marquee-item">BNB Chain</span>
+            <span class="marquee-item">Chi Longevity Services</span>
         </div>
     </div>
 
-    <!-- CARROUSEL DE PROYECTOS GLOBAL 2025 -->
+    <!-- GLOBAL PROJECTS CAROUSEL (Infinite Loop) -->
     <section class="project-carousel-section">
-        <div class="text-center" style="padding-top: 6rem;">
+        <div class="text-center" style="padding-top: 4rem;">
             <span class="subtitle" data-i18n="globalSubtitle">THE GLOBAL RUNWAY | 2025</span>
             <h2 class="heading-l" data-i18n="globalTitle">Across Borders</h2>
-            <p data-i18n="globalText">Selected works from our operations in 86+ countries. Defining excellence worldwide.</p>
+            <p data-i18n="globalText">Selected works from our operations in 86+ countries.</p>
         </div>
 
         <div class="project-carousel-container">
             <div class="project-carousel-track">
-                <!-- Proyectos existentes (UAE, Singapore, etc.) se mantienen igual -->
-                <!-- UAE -->
+                <!-- SET 1 (7 Items) -->
                 <div class="project-card-slide">
                     <div class="slide-image-wrapper">
-                        <img src="https://images.unsplash.com/photo-1512453979798-5ea9ba6a80f4?q=80&w=2070&auto=format&fit=crop" alt="UAE Project">
+                        <!-- Imagen actualizada para UAE -->
+                        <img src="https://cdn.prod.website-files.com/64e21a34e41da63fe4f44c5a/6685fc6b4013b3e57e64dc68_pexels-blue-earth-photo-921252577-19965890%20(1).jpg" 
+                             onerror="this.src='https://images.unsplash.com/photo-1512453979798-5ea9ba6a80f4?q=80&w=2070&auto=format&fit=crop'"
+                             alt="UAE Project">
                     </div>
                     <span class="slide-country">UNITED ARAB EMIRATES</span>
                     <h3 class="slide-title">The Agentic Sunset</h3>
                     <span class="slide-client">The Louvre Abu Dhabi</span>
                 </div>
-
-                <!-- SINGAPORE -->
                 <div class="project-card-slide">
                     <div class="slide-image-wrapper">
                         <img src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?q=80&w=2552&auto=format&fit=crop" alt="Singapore Project">
@@ -695,8 +984,6 @@
                     <h3 class="slide-title">Human Accelerator</h3>
                     <span class="slide-client">Primal / Sentosa</span>
                 </div>
-
-                <!-- INDONESIA -->
                 <div class="project-card-slide">
                     <div class="slide-image-wrapper">
                         <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=2538&auto=format&fit=crop" alt="Indonesia Project">
@@ -705,8 +992,6 @@
                     <h3 class="slide-title">Calma Wellness</h3>
                     <span class="slide-client">Bali Retreat</span>
                 </div>
-
-                <!-- FRANCE -->
                 <div class="project-card-slide">
                     <div class="slide-image-wrapper">
                         <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=2673&auto=format&fit=crop" alt="France Project">
@@ -715,8 +1000,6 @@
                     <h3 class="slide-title">Sensory Activation</h3>
                     <span class="slide-client">David Ghiyam</span>
                 </div>
-
-                <!-- PERU -->
                 <div class="project-card-slide">
                     <div class="slide-image-wrapper">
                         <img src="https://cuscoperu.b-cdn.net/wp-content/uploads/2024/06/Llama-en-Machu-Picchu-pc.jpg.webp" alt="Peru Project">
@@ -725,75 +1008,137 @@
                     <h3 class="slide-title">Binance EOY</h3>
                     <span class="slide-client">Lima Community</span>
                 </div>
-
-                <!-- COLOMBIA -->
                 <div class="project-card-slide">
                     <div class="slide-image-wrapper">
-                        <img src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?q=80&w=2070&auto=format&fit=crop" alt="Colombia Project">
+                        <img src="https://media.meer.com/attachments/49319d1f2192568285d62eecacfe806991e59cee/store/fill/1090/613/8a34ea8b6a83a846881e90dcfdcceb81cb7d65b7aed60a1f0bae1c45deba/La-Piedra-del-Penon-de-Guatape-al-fondo.jpg" 
+                             onerror="this.src='https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?q=80&w=2070&auto=format&fit=crop'"
+                             alt="Colombia Project">
                     </div>
                     <span class="slide-country">COLOMBIA</span>
                     <h3 class="slide-title">Crypto Coffee</h3>
                     <span class="slide-client">Medellín</span>
                 </div>
-
-                <!-- MEXICO -->
                 <div class="project-card-slide">
                     <div class="slide-image-wrapper">
-                        <img src="https://images.unsplash.com/photo-1518105779142-d975f22f1b0a?q=80&w=2070&auto=format&fit=crop" alt="Mexico Project">
+                        <!-- Imagen de México Actualizada -->
+                        <img src="https://www.latamairlines.com/content/dam/latamxp/sites/destinos/mexico/hero/MEX.jpg" 
+                             onerror="this.src='https://images.unsplash.com/photo-1518105779142-d975f22f1b0a?q=80&w=2070&auto=format&fit=crop'"
+                             alt="Mexico Project">
                     </div>
                     <span class="slide-country">MEXICO</span>
                     <h3 class="slide-title">Criptoposada</h3>
                     <span class="slide-client">Mexico City</span>
                 </div>
+                 <!-- INTERNATIONAL ELIMINADO -->
 
-                 <!-- INTERNATIONAL -->
-                 <div class="project-card-slide">
+                <!-- SET 2 (Duplicate for loop) -->
+                <div class="project-card-slide">
                     <div class="slide-image-wrapper">
-                        <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=2070&auto=format&fit=crop" alt="International Project">
+                        <!-- Imagen actualizada para UAE (Duplicado) -->
+                        <img src="https://cdn.prod.website-files.com/64e21a34e41da63fe4f44c5a/6685fc6b4013b3e57e64dc68_pexels-blue-earth-photo-921252577-19965890%20(1).jpg" 
+                             onerror="this.src='https://images.unsplash.com/photo-1512453979798-5ea9ba6a80f4?q=80&w=2070&auto=format&fit=crop'"
+                             alt="UAE Project">
                     </div>
-                    <span class="slide-country">INTERNATIONAL</span>
-                    <h3 class="slide-title">Elite Models</h3>
-                    <span class="slide-client">Global Campaign</span>
+                    <span class="slide-country">UNITED ARAB EMIRATES</span>
+                    <h3 class="slide-title">The Agentic Sunset</h3>
+                    <span class="slide-client">The Louvre Abu Dhabi</span>
+                </div>
+                <div class="project-card-slide">
+                    <div class="slide-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?q=80&w=2552&auto=format&fit=crop" alt="Singapore Project">
+                    </div>
+                    <span class="slide-country">SINGAPORE</span>
+                    <h3 class="slide-title">Human Accelerator</h3>
+                    <span class="slide-client">Primal / Sentosa</span>
+                </div>
+                <div class="project-card-slide">
+                    <div class="slide-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=2538&auto=format&fit=crop" alt="Indonesia Project">
+                    </div>
+                    <span class="slide-country">INDONESIA</span>
+                    <h3 class="slide-title">Calma Wellness</h3>
+                    <span class="slide-client">Bali Retreat</span>
+                </div>
+                <div class="project-card-slide">
+                    <div class="slide-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=2673&auto=format&fit=crop" alt="France Project">
+                    </div>
+                    <span class="slide-country">FRANCE</span>
+                    <h3 class="slide-title">Sensory Activation</h3>
+                    <span class="slide-client">David Ghiyam</span>
+                </div>
+                <div class="project-card-slide">
+                    <div class="slide-image-wrapper">
+                        <img src="https://cuscoperu.b-cdn.net/wp-content/uploads/2024/06/Llama-en-Machu-Picchu-pc.jpg.webp" alt="Peru Project">
+                    </div>
+                    <span class="slide-country">PERU</span>
+                    <h3 class="slide-title">Binance EOY</h3>
+                    <span class="slide-client">Lima Community</span>
+                </div>
+                <div class="project-card-slide">
+                    <div class="slide-image-wrapper">
+                        <img src="https://media.meer.com/attachments/49319d1f2192568285d62eecacfe806991e59cee/store/fill/1090/613/8a34ea8b6a83a846881e90dcfdcceb81cb7d65b7aed60a1f0bae1c45deba/La-Piedra-del-Penon-de-Guatape-al-fondo.jpg" 
+                             onerror="this.src='https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?q=80&w=2070&auto=format&fit=crop'"
+                             alt="Colombia Project">
+                    </div>
+                    <span class="slide-country">COLOMBIA</span>
+                    <h3 class="slide-title">Crypto Coffee</h3>
+                    <span class="slide-client">Medellín</span>
+                </div>
+                <div class="project-card-slide">
+                    <div class="slide-image-wrapper">
+                        <!-- Imagen de México Actualizada -->
+                        <img src="https://www.latamairlines.com/content/dam/latamxp/sites/destinos/mexico/hero/MEX.jpg" 
+                             onerror="this.src='https://images.unsplash.com/photo-1518105779142-d975f22f1b0a?q=80&w=2070&auto=format&fit=crop'"
+                             alt="Mexico Project">
+                    </div>
+                    <span class="slide-country">MEXICO</span>
+                    <h3 class="slide-title">Criptoposada</h3>
+                    <span class="slide-client">Mexico City</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- INTRODUCCIÓN SERVICIOS -->
-    <section class="section-spacer text-center" style="padding-bottom: 4rem;">
-        <span class="subtitle" data-i18n="architectureSubtitle">TAILORED FOR IMPACT</span>
-        <h2 class="heading-l" data-i18n="pillarsTitle">Discover our Services</h2>
-        <p data-i18n="pillarsText">
-            Our expertise is divided into three distinct realms. Each dedicated to a specific pursuit of excellence, tailored for brands, nations, and individuals.
-        </p>
-    </section>
-
-    <!-- GRID DE SERVICIOS -->
+    <!-- SERVICES GRID (PRODUCTOS) -->
     <section class="section-spacer" style="padding-top: 0;">
+        <div class="text-center" style="margin-bottom: 2rem;">
+            <span class="subtitle" data-i18n="architectureSubtitle">TAILORED FOR IMPACT</span>
+            <h2 class="heading-l" data-i18n="pillarsTitle">Discover our Services</h2>
+        </div>
         <div class="grid-container">
             <article class="card">
                 <div class="card-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=2000&auto=format&fit=crop" alt="Brands">
+                    <!-- Imagen de Brands Actualizada -->
+                    <img src="https://uploads.onecompiler.io/44aea5sng/44aea5v29/RedactedAirways-Final-15.webp" 
+                         onerror="this.src='https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=2000&auto=format&fit=crop'"
+                         alt="Brands">
                 </div>
                 <span class="subtitle" data-i18n="brandSubtitle">01 / BRANDS</span>
                 <h3 data-i18n="brandTitle">Tailored for Impact</h3>
-                <p data-i18n="brandText">From concept to execution, we engineer experiences that go beyond the expected, creating deep engagement and lasting impact. Experience Design, Brand Activations & Strategic Collaborations.</p>
+                <p data-i18n="brandText">From concept to execution, we engineer experiences that go beyond the expected, creating deep engagement and lasting impact.</p>
                 <a href="#" class="text-link" data-i18n="viewCases">View Case Studies</a>
             </article>
 
             <article class="card">
                 <div class="card-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=2070&auto=format&fit=crop" alt="Governments">
+                    <!-- Imagen de Gobiernos con Fallback -->
+                    <img src="https://uploads.onecompiler.io/44aea5sng/44aea5v29/ChatGPT%20Image%2012%20ene%202026,%2014_34_23.png" 
+                         onerror="this.src='https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=2070&auto=format&fit=crop'"
+                         alt="Governments">
                 </div>
                 <span class="subtitle" data-i18n="govSubtitle">02 / GOVERNMENTS</span>
                 <h3 data-i18n="govTitle">Innovation Meets Diplomacy</h3>
-                <p data-i18n="govText">Partnering with governments to create transformative initiatives. Strategic Expos, Investment Positioning & Smart Cities. Legacy meets impact.</p>
+                <p data-i18n="govText">Partnering with governments to create transformative initiatives. Legacy meets impact.</p>
                 <a href="#" class="text-link" data-i18n="viewStrategies">View Strategies</a>
             </article>
 
             <article class="card">
                 <div class="card-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?q=80&w=2076&auto=format&fit=crop" alt="Individuals">
+                    <!-- Imagen de Individuos con Fallback -->
+                    <img src="https://uploads.onecompiler.io/44aea5sng/44aea5v29/ChatGPT%20Image%2012%20ene%202026,%2014_19_39.png" 
+                         onerror="this.src='https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?q=80&w=2076&auto=format&fit=crop'"
+                         alt="Individuals">
                 </div>
                 <span class="subtitle" data-i18n="privSubtitle">03 / INDIVIDUALS</span>
                 <h3 data-i18n="privTitle">By Circolo</h3>
@@ -803,137 +1148,355 @@
         </div>
     </section>
 
-    <!-- TEAM SECTION (ESTÉTICA MEJORADA) -->
-    <section class="section-spacer" style="background-color: #fdfdfd; padding-top: 6rem;">
-        <div class="text-center" style="margin-bottom: 6rem;">
+    <!-- NEW SECTION: PRESS (Visual Editorial Grid - 4 Columns) -->
+    <section class="press-section">
+        <div class="text-center" style="margin-bottom: 4rem;">
+            <span class="subtitle" data-i18n="pressSubtitle">PRESS</span>
+        </div>
+        <div class="press-grid" id="pressGrid">
+            
+            <!-- 1. CoinMarketCap -->
+            <a href="https://coinmarketcap.com/community/articles/68a8266f8c34f9397ee4ecd9/" target="_blank" class="press-card">
+                <div class="press-image-wrapper">
+                    <img src="https://academy-public.coinmarketcap.com/srd-optimized-uploads/13c929bec0c7456dba7a8da772b7865c.png" 
+                         onerror="this.src='https://images.unsplash.com/photo-1621761191319-c6fb62004040?q=80&w=2070&auto=format&fit=crop'"
+                         alt="CoinMarketCap Feature">
+                </div>
+                <span class="press-meta">COINMARKETCAP</span>
+                <h4 class="press-title">Circolo Community: A New Era of Connection</h4>
+                <p class="press-description">CoinMarketCap highlights how Circolo is redefining community engagement through immersive experiences.</p>
+                <span class="press-link-text">Read Article</span>
+            </a>
+
+            <!-- 2. Khaleej Times -->
+            <a href="https://www.khaleejtimes.com/business/the-exclusive-token2049-private-dinner-everyones-talking-about" target="_blank" class="press-card">
+                <div class="press-image-wrapper">
+                    <img src="https://imgengine.khaleejtimes.com/khaleejtimes-english/2025-04-24/uepxcsdn/TOKEN49IXI.jpeg?width=1200&height=800&format=auto" alt="Exclusive Token2049 Dinner">
+                </div>
+                <span class="press-meta">KHALEEJ TIMES</span>
+                <h4 class="press-title">The Exclusive TOKEN2049 Private Dinner</h4>
+                <p class="press-description">Circolo and IXI Labs hosted an unforgettable evening at CÉ LA VI Dubai, bringing together Web3 leaders.</p>
+                <span class="press-link-text">Read Article</span>
+            </a>
+
+            <!-- 3. The Blockopedia (AREPA) -->
+            <a href="https://theblockopedia.com/circolo-makes-history-at-token2049-the-first-real-arepa-in-the-world-gets-tokenized/" target="_blank" class="press-card">
+                <div class="press-image-wrapper">
+                    <img src="https://theblockopedia.com/wp-content/uploads/2025/05/Untitled-design-1_11zon.png" alt="First Tokenized Arepa">
+                </div>
+                <span class="press-meta">THE BLOCKOPEDIA</span>
+                <h4 class="press-title">Circolo Makes History: The First Real Arepa Gets Tokenized</h4>
+                <p class="press-description">A groundbreaking moment at TOKEN2049 where culinary tradition meets blockchain innovation.</p>
+                <span class="press-link-text">Read Article</span>
+            </a>
+
+            <!-- 4. The Blockopedia (Impactful Experiences) -->
+            <a href="https://theblockopedia.com/circolo-curates-the-most-impactful-web3-experiences-during-token2049-dubai/" target="_blank" class="press-card">
+                <div class="press-image-wrapper">
+                    <img src="https://theblockopedia.com/wp-content/uploads/2025/04/Untitled-design-16.png" alt="Token2049 Dubai Impact">
+                </div>
+                <span class="press-meta">THE BLOCKOPEDIA</span>
+                <h4 class="press-title">Circolo Curates The Most Impactful Web3 Experiences</h4>
+                <p class="press-description">Defining the standard for immersive Web3 events, blending luxury and innovation in Dubai.</p>
+                <span class="press-link-text">Read Article</span>
+            </a>
+
+            <!-- NOTICIAS OCULTAS -->
+            
+            <!-- 5. Coin Gabbar -->
+            <a href="https://www.coingabbar.com/en/crypto-press-release/circolo-web3-events-at-token2049-dubai-2025" target="_blank" class="press-card press-hidden">
+                <div class="press-image-wrapper">
+                    <img src="https://d3iuzwoiyg9qa8.cloudfront.net/webadmin/storage/public/crypto-news/April2025/temp680a017b3adff.webp" alt="Token2049 Dubai">
+                </div>
+                <span class="press-meta">COIN GABBAR</span>
+                <h4 class="press-title">Circolo Showcases Web3 Culture at TOKEN2049 with Iconic Events</h4>
+                <p class="press-description">Leading the conversation on the future of Web3 with immersive experiences in Dubai.</p>
+                <span class="press-link-text">Read Article</span>
+            </a>
+
+            <!-- 6. Abu Dhabi -->
+            <a href="https://theblockopedia.com/abu-dhabi-prepares-for-a-december-takeover-and-circolo-is-quietly-at-the-center-of-it/" target="_blank" class="press-card press-hidden">
+                <div class="press-image-wrapper">
+                    <img src="https://theblockopedia.com/wp-content/uploads/2025/12/Untitled-design-2025-12-03T104658.758.png" alt="Abu Dhabi Takeover">
+                </div>
+                <span class="press-meta">THE BLOCKOPEDIA</span>
+                <h4 class="press-title">Abu Dhabi Prepares for a December Takeover</h4>
+                <p class="press-description">How Circolo is quietly positioning itself at the center of the capital's cultural shift.</p>
+                <span class="press-link-text">Read Article</span>
+            </a>
+
+            <!-- 7. Binance -->
+            <a href="https://www.binance.com/es/square/post/32125271230290" target="_blank" class="press-card press-hidden">
+                <div class="press-image-wrapper">
+                    <img src="https://www.binance.com/bapi/fe/resource/image?image=aHR0cHM6Ly9wdWJsaWMuYm5ic3RhdGljLmNvbS9zdGF0aWMvY29udGVudC9zcXVhcmUvaW1hZ2VzLzhiMzVmZTAwOTdiYTRhNWY5NDhhMjAzMjVjYjg3ZDJmLmpwZw==&level=lg" alt="Binance Lima">
+                </div>
+                <span class="press-meta">BINANCE SQUARE</span>
+                <h4 class="press-title">Circolo Community: Connecting in Lima</h4>
+                <p class="press-description">Fostering global connections and community growth in the heart of Peru.</p>
+                <span class="press-link-text">Read Article</span>
+            </a>
+
+            <!-- 8. Samuel J / Token2049 -->
+            <a href="https://theblockopedia.com/from-soul-to-sentosa-samuel-j-to-perform-at-circolo-house-fortoken2049/" target="_blank" class="press-card press-hidden">
+                <div class="press-image-wrapper">
+                    <img src="https://theblockopedia.com/wp-content/uploads/2025/10/Untitled-design-7.png" alt="Soul to Sentosa">
+                </div>
+                <span class="press-meta">THE BLOCKOPEDIA</span>
+                <h4 class="press-title">From Soul to Sentosa: Samuel J at Circolo House</h4>
+                <p class="press-description">An exclusive performance blending soul music with the vibrant energy of Token2049.</p>
+                <span class="press-link-text">Read Article</span>
+            </a>
+
+        </div>
+
+        <div class="press-expand-container">
+            <button class="press-expand-btn" onclick="togglePress()" data-i18n="viewAllNews">VIEW ALL NEWS</button>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: INSTAGRAM STORIES (Horizontal Scroll & Lightbox) -->
+    <section class="stories-section">
+        <div class="text-center" style="margin-bottom: 2rem;">
+            <span class="subtitle" data-i18n="storiesSubtitle">CURATED MOMENTS</span>
+        </div>
+        <div class="stories-scroll-wrapper">
+            <!-- Story 1: IXI Cipher Dinner -->
+            <div class="story-card" onclick="openInstaModal('https://www.instagram.com/p/DJja1afxkXq/embed')">
+                <img src="https://uploads.onecompiler.io/4474z9257/44ad3qvge/DSCF0074.webp" 
+                     onerror="this.src='https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1974&auto=format&fit=crop'" 
+                     class="story-img" alt="IXI Cipher Dinner">
+                <div class="story-play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                <div class="story-overlay"><span class="story-title">IXI CIPHER<br>DINNER</span></div>
+            </div>
+
+            <!-- Story 2: Pitches -->
+            <div class="story-card" onclick="openInstaModal('https://www.instagram.com/reel/DJHHO5RI5Al/embed')">
+                <img src="https://uploads.onecompiler.io/44aea5sng/44aea5v29/Captura%20de%20pantalla%202026-01-12%20a%20las%2010.03.56%E2%80%AFp.m..png" 
+                     onerror="this.src='https://images.unsplash.com/photo-1550969448-3f96b896b022?q=80&w=2070&auto=format&fit=crop'" 
+                     class="story-img" alt="Pitches">
+                <div class="story-play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                <div class="story-overlay"><span class="story-title">PITCHES</span></div>
+            </div>
+
+            <!-- Story 3: GM GM Break fest -->
+            <div class="story-card" onclick="openInstaModal('https://www.instagram.com/reel/DJGfCJBxn33/embed')">
+                <img src="https://uploads.onecompiler.io/44aea5sng/44aea5v29/DSC06990.webp" 
+                     onerror="this.src='https://images.unsplash.com/photo-1533089862017-62f442377983?q=80&w=2070&auto=format&fit=crop'" 
+                     class="story-img" alt="GM GM Break fest">
+                <div class="story-play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                <div class="story-overlay"><span class="story-title">GM GM<br>BREAK FEST</span></div>
+            </div>
+
+            <!-- Story 4: Blacklane Dinner -->
+            <div class="story-card" onclick="openInstaModal('https://www.instagram.com/reel/DHvl6qDz7bL/embed')">
+                <img src="https://www.instagram.com/p/DHvl6qDz7bL/media/?size=l" 
+                     onerror="this.src='https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1974&auto=format&fit=crop'" 
+                     class="story-img" alt="Blacklane Dinner">
+                <div class="story-play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                <div class="story-overlay"><span class="story-title">BLACKLANE DINNER</span></div>
+            </div>
+
+            <!-- Story 5: Latino Sunday -->
+            <div class="story-card" onclick="openInstaModal('https://www.instagram.com/reel/DI_LECDzLY8/embed')">
+                <img src="https://www.instagram.com/p/DI_LECDzLY8/media/?size=l" 
+                     onerror="this.src='https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1950&auto=format&fit=crop'" 
+                     class="story-img" alt="Latino Sunday">
+                <div class="story-play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                <div class="story-overlay"><span class="story-title">LATINO SUNDAY</span></div>
+            </div>
+
+            <!-- Story 6: Nomad Day -->
+            <div class="story-card" onclick="openInstaModal('https://www.instagram.com/reel/DJDu5qwxJPy/embed')">
+                <img src="https://www.instagram.com/p/DJDu5qwxJPy/media/?size=l" 
+                     onerror="this.src='https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2070&auto=format&fit=crop'" 
+                     class="story-img" alt="Nomad Day">
+                <div class="story-play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                <div class="story-overlay"><span class="story-title">NOMAD DAY</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM (The Collective) -->
+    <section class="section-spacer" style="background-color: #fdfdfd; padding-top: 4rem;">
+        <div class="text-center" style="margin-bottom: 4rem;">
             <span class="subtitle" data-i18n="teamSubtitle">THE COLLECTIVE</span>
             <h2 class="heading-l" data-i18n="teamTitle">Minds Behind the Legacy</h2>
         </div>
 
         <div class="team-grid-container">
             <!-- 1. Alvaro Daza -->
-            <div class="card">
+            <a href="https://www.linkedin.com/in/alvdaza/" target="_blank" class="team-card-link">
                 <div class="team-card-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1887&auto=format&fit=crop" alt="Alvaro Daza">
+                    <!-- Fallback añadido por si el CDN falla -->
+                    <img src="https://cdn.prod.website-files.com/67ea12a6cb5c87586b4cbe36/67fca235adda3bf7cd0cbd2c_47559e51-11cf-493b-9fd5-eced4f810784%202.jpg" 
+                         onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1887&auto=format&fit=crop'"
+                         alt="Alvaro Daza">
+                    <!-- Icono LinkedIn -->
+                    <svg class="linkedin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                 </div>
                 <h3 class="team-name">Alvaro Daza</h3>
                 <span class="team-role" data-i18n="roleFounder">FOUNDER & CEO</span>
-            </div>
-
-            <!-- 2. Marco Giovanni -->
-            <div class="card">
+            </a>
+            
+            <!-- 2. Marco Giovanni (LINKEDIN ACTUALIZADO) -->
+            <a href="https://www.linkedin.com/in/marcodegiovanni007/" target="_blank" class="team-card-link">
                 <div class="team-card-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1887&auto=format&fit=crop" alt="Marco Giovanni">
+                    <img src="https://cdn.prod.website-files.com/67ea12a6cb5c87586b4cbe36/67f75fe7606383a956b6c9fb_people%20photos-03.jpg" 
+                         onerror="this.src='https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1887&auto=format&fit=crop'"
+                         alt="Marco Giovanni">
+                    <svg class="linkedin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                 </div>
                 <h3 class="team-name">Marco Giovanni</h3>
                 <span class="team-role" data-i18n="roleCoo">CO-FOUNDER & COO</span>
-            </div>
+            </a>
 
-            <!-- 3. Sebastian Mora -->
-            <div class="card">
+            <!-- 3. Camilo Romero -->
+            <a href="https://www.linkedin.com/in/camilo-romero-molano-6037a590/" target="_blank" class="team-card-link">
                 <div class="team-card-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?q=80&w=2048&auto=format&fit=crop" alt="Sebastian Mora">
+                    <img src="https://media.licdn.com/dms/image/v2/D4E03AQF9eTSy1tM3-Q/profile-displayphoto-crop_800_800/B4EZfXi62rGcAI-/0/1751667949450?e=1769644800&v=beta&t=AMCBfQhuvHLIoIoTG8_9TqClXwhdy1JREdRWiw4CBH8" 
+                         onerror="this.src='https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?q=80&w=2048&auto=format&fit=crop'"
+                         alt="Camilo Romero">
+                    <svg class="linkedin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                 </div>
-                <h3 class="team-name">Sebastian Mora</h3>
-                <span class="team-role" data-i18n="roleMarketing">MARKETING DIRECTOR</span>
-            </div>
+                <h3 class="team-name">Camilo Romero</h3>
+                <span class="team-role" data-i18n="roleDirectorLatam">DIRECTOR LATAM</span>
+            </a>
 
             <!-- 4. Carolina Mejía -->
-            <div class="card">
+            <a href="https://www.linkedin.com/in/carolina-mejia-12989120b/" target="_blank" class="team-card-link">
                 <div class="team-card-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1888&auto=format&fit=crop" alt="Carolina Mejía">
+                    <img src="https://cdn.prod.website-files.com/67ea12a6cb5c87586b4cbe36/67f75fe8b1afdf10f24ddb22_people%20photos-04.jpg" 
+                         onerror="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1888&auto=format&fit=crop'"
+                         alt="Carolina Mejía">
+                    <svg class="linkedin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                 </div>
                 <h3 class="team-name">Carolina Mejía</h3>
                 <span class="team-role" data-i18n="rolePartnerships">PARTNERSHIPS AND MOMENTUM</span>
-            </div>
+            </a>
 
             <!-- 5. Fares AlDika -->
-            <div class="card">
+            <a href="https://www.linkedin.com/in/fares-al-dika/" target="_blank" class="team-card-link">
                 <div class="team-card-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1887&auto=format&fit=crop" alt="Fares AlDika">
+                    <img src="https://cdn.prod.website-files.com/67ea12a6cb5c87586b4cbe36/67f75fe9261184f88079f138_people%20photos-07.jpg" 
+                         onerror="this.src='https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1887&auto=format&fit=crop'"
+                         alt="Fares AlDika">
+                    <svg class="linkedin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                 </div>
                 <h3 class="team-name">Fares AlDika</h3>
                 <span class="team-role" data-i18n="roleFinancial">FINANCIAL MANAGER</span>
-            </div>
+            </a>
 
             <!-- 6. Juan Romero -->
-            <div class="card">
+            <a href="https://www.linkedin.com/in/juan-felipe-romero-lopez/" target="_blank" class="team-card-link">
                 <div class="team-card-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1887&auto=format&fit=crop" alt="Juan Romero">
+                    <img src="https://cdn.prod.website-files.com/67ea12a6cb5c87586b4cbe36/67f75fe7606383a956b6c9d2_people%20photos-05.jpg" 
+                         onerror="this.src='https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1887&auto=format&fit=crop'"
+                         alt="Juan Romero">
+                    <svg class="linkedin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                 </div>
                 <h3 class="team-name">Juan Romero</h3>
                 <span class="team-role" data-i18n="roleOperations">OPERATIONS ASSISTANT</span>
-            </div>
+            </a>
 
             <!-- 7. Melissa Aponte -->
-            <div class="card">
+            <a href="https://www.linkedin.com/in/melissaponte/" target="_blank" class="team-card-link">
                 <div class="team-card-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop" alt="Melissa Aponte">
+                    <img src="https://cdn.prod.website-files.com/67ea12a6cb5c87586b4cbe36/67f760ce4af92f795c8b8a11_people%20photos-08-09.jpg" 
+                         onerror="this.src='https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop'"
+                         alt="Melissa Aponte">
+                    <svg class="linkedin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                 </div>
                 <h3 class="team-name">Melissa Aponte</h3>
                 <span class="team-role" data-i18n="rolePeople">PEOPLE AND IMPACT</span>
-            </div>
+            </a>
 
             <!-- 8. Valentin Sierra -->
-            <div class="card">
+            <a href="https://www.linkedin.com/in/valentin-sierra-colombia/" target="_blank" class="team-card-link">
                 <div class="team-card-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070&auto=format&fit=crop" alt="Valentin Sierra">
+                    <img src="https://cdn.prod.website-files.com/67ea12a6cb5c87586b4cbe36/67f75fe772be2a46e7ec13a8_people%20photos-08.jpg" 
+                         onerror="this.src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070&auto=format&fit=crop'"
+                         alt="Valentin Sierra">
+                    <svg class="linkedin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                 </div>
                 <h3 class="team-name">Valentin Sierra</h3>
                 <span class="team-role" data-i18n="roleGovRelations">GOVERNMENT RELATIONS</span>
-            </div>
+            </a>
 
             <!-- 9. María Rosero -->
-            <div class="card">
+            <div class="team-card-link">
                 <div class="team-card-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1598550874175-4d7112ee7f43?q=80&w=2070&auto=format&fit=crop" alt="María Rosero">
+                    <img src="https://cdn.prod.website-files.com/67ea12a6cb5c87586b4cbe36/67f760be5dd36a3c9d7d4d19_people%20photos-08-10.jpg" 
+                         onerror="this.src='https://images.unsplash.com/photo-1598550874175-4d7112ee7f43?q=80&w=2070&auto=format&fit=crop'"
+                         alt="María Rosero">
                 </div>
                 <h3 class="team-name">María Rosero</h3>
                 <span class="team-role" data-i18n="roleSales">SALES COORDINATOR</span>
             </div>
 
             <!-- 10. Andres Cañas -->
-            <div class="card">
+            <a href="https://www.linkedin.com/in/andr%C3%A9s-felipe-ca%C3%B1as-laverde-894453218/" target="_blank" class="team-card-link">
                 <div class="team-card-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1887&auto=format&fit=crop" alt="Andres Cañas">
+                    <img src="https://cdn.prod.website-files.com/67ea12a6cb5c87586b4cbe36/67f75fe7072cea7272c6656d_people%20photos-06.jpg" 
+                         onerror="this.src='https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1887&auto=format&fit=crop'"
+                         alt="Andres Cañas">
+                    <svg class="linkedin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                 </div>
                 <h3 class="team-name">Andres Cañas</h3>
                 <span class="team-role" data-i18n="roleExpExec">EXPERIENCE EXECUTIVE</span>
-            </div>
+            </a>
 
             <!-- 11. Ayah Okasha -->
-            <div class="card">
+            <div class="team-card-link">
                 <div class="team-card-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?q=80&w=1887&auto=format&fit=crop" alt="Ayah Okasha">
+                    <img src="https://cdn.prod.website-files.com/67ea12a6cb5c87586b4cbe36/67f92be38314eb3ab3e1c8ff_people%20photos-90.jpg" 
+                         onerror="this.src='https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?q=80&w=1887&auto=format&fit=crop'"
+                         alt="Ayah Okasha">
                 </div>
                 <h3 class="team-name">Ayah Okasha</h3>
                 <span class="team-role" data-i18n="roleExpManager">EXPERIENCE MANAGER</span>
             </div>
 
             <!-- 12. Rahath Aaliya -->
-            <div class="card">
+            <a href="https://www.linkedin.com/in/rahathaaliya/" target="_blank" class="team-card-link">
                 <div class="team-card-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1534751516015-0d4006c80e4e?q=80&w=1961&auto=format&fit=crop" alt="Rahath Aaliya">
+                    <img src="https://cdn.prod.website-files.com/67ea12a6cb5c87586b4cbe36/685517420c7d772e0f5603d5_WhatsApp%20Image%202025-06-19%20at%2013.40.56.jpeg" 
+                         onerror="this.src='https://images.unsplash.com/photo-1534751516015-0d4006c80e4e?q=80&w=1961&auto=format&fit=crop'"
+                         alt="Rahath Aaliya">
+                    <svg class="linkedin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                 </div>
                 <h3 class="team-name">Rahath Aaliya</h3>
                 <span class="team-role" data-i18n="roleMarketingCoord">MARKETING & COMMUNITY CO-ORDINATOR</span>
-            </div>
+            </a>
         </div>
     </section>
 
-    <!-- FOOTER ULTRA SIMPLE -->
+    <!-- FOOTER -->
     <footer>
         <div class="footer-col">
             <div class="logo" style="position: relative; left: 0; transform: none;">CIRCOLO</div>
             <p style="font-size: 0.75rem; margin: 1rem 0 0 0; color: #999;">© 2026 Circolo Life.</p>
         </div>
-        
         <div class="footer-col" style="flex-direction: row; gap: 3rem;">
             <a href="#" class="footer-link">Instagram</a>
             <a href="#" class="footer-link">LinkedIn</a>
             <a href="#" class="footer-link" data-i18n="contact">Contact</a>
         </div>
     </footer>
+
+    <!-- WHATSAPP FLOATING BUTTON -->
+    <a href="https://wa.link/0udz77" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+        <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.017-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+        </svg>
+    </a>
+
+    <!-- MODAL -->
+    <div id="insta-modal" class="modal" onclick="closeInstaModal(event)">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeInstaModal(event)">×</span>
+            <iframe id="insta-frame" class="instagram-embed" src="" allowtransparency="true" allowfullscreen="true" scrolling="no"></iframe>
+        </div>
+    </div>
 
     <script>
         // Diccionario de Traducciones
@@ -942,9 +1505,8 @@
                 menu: "Menu",
                 inquire: "Inquire",
                 heroTitle: "Creating Legacy Experiences",
-                heroText: "At Circolo, we’re revolutionizing Legacy Experience as a Service (LEAAS), crafting pioneering moments and meaningful connections. We leave a lasting legacy that bridges the physical and digital worlds, powered by bold innovation and cutting-edge technology.",
-                enterProject: "Enter the Project",
-                manifesto: "We craft bespoke experiences that elevate prestige, drive innovation, and create lasting impact. We turn visions into reality. Reach out to us and unlock the exceptional!",
+                manifestoText: "At Circolo, we’re revolutionizing Legacy Experience as a Service (LEAAS). Bridging the physical and digital worlds with bold innovation, we craft bespoke moments that elevate prestige, drive innovation, and create lasting impact. Turning visions into reality.",
+                enterProject: "Unlock the Exceptional",
                 globalSubtitle: "THE GLOBAL RUNWAY | 2025",
                 globalTitle: "Across Borders",
                 globalText: "Selected works from our operations in 86+ countries. Defining excellence worldwide.",
@@ -965,11 +1527,19 @@
                 privTitle: "By Circolo",
                 privText: "Curating extraordinary experiences for those who seek the exceptional. 2222 Residences, Takeovers, Private Supper Clubs & Lifetime Expeditions.",
                 beginJourney: "Begin Journey",
+                pressSubtitle: "PRESS",
+                viewAllNews: "VIEW ALL NEWS",
+                viewLessNews: "VIEW LESS",
+                pressArticle1: "Abu Dhabi Prepares for a December Takeover",
+                pressArticle2: "Innovation meets Diplomacy in Dubai",
+                pressArticle3: "The Future of Legacy Experience",
+                storiesSubtitle: "CURATED MOMENTS",
                 teamSubtitle: "THE COLLECTIVE",
                 teamTitle: "Minds Behind the Legacy",
                 roleFounder: "FOUNDER & CEO",
                 roleCoo: "CO-FOUNDER & COO",
                 roleMarketing: "MARKETING DIRECTOR",
+                roleDirectorLatam: "DIRECTOR LATAM",
                 rolePartnerships: "PARTNERSHIPS AND MOMENTUM",
                 roleFinancial: "FINANCIAL MANAGER",
                 roleOperations: "OPERATIONS ASSISTANT",
@@ -985,9 +1555,8 @@
                 menu: "Menú",
                 inquire: "Consultar",
                 heroTitle: "Creando Experiencias de Legado",
-                heroText: "En Circolo, estamos revolucionando la Experiencia de Legado como Servicio (LEAAS), creando momentos pioneros y conexiones significativas. Dejamos un legado duradero que une los mundos físico y digital, impulsado por una innovación audaz y tecnología de vanguardia.",
-                enterProject: "Entrar al Proyecto",
-                manifesto: "Creamos experiencias a medida que elevan el prestigio, impulsan la innovación y crean un impacto duradero. Convertimos visiones en realidad. ¡Contáctanos y desbloquea lo excepcional!",
+                manifestoText: "En Circolo, revolucionamos la Experiencia de Legado como Servicio (LEAAS). Uniendo los mundos físico y digital con innovación audaz, creamos momentos a medida que elevan el prestigio, impulsan la innovación y generan un impacto duradero. Convirtiendo visiones en realidad.",
+                enterProject: "Desbloquea lo Excepcional",
                 globalSubtitle: "LA PASARELA GLOBAL | 2025",
                 globalTitle: "A través de Fronteras",
                 globalText: "Obras seleccionadas de nuestras operaciones en más de 86 países. Definiendo la excelencia en todo el mundo.",
@@ -1008,11 +1577,19 @@
                 privTitle: "Por Circolo",
                 privText: "Curaduría de experiencias extraordinarias para quienes buscan lo excepcional. Residencias 2222, Takeovers, Cenas Privadas y Expediciones Únicas.",
                 beginJourney: "Comenzar Viaje",
+                pressSubtitle: "PRENSA",
+                viewAllNews: "VER TODAS LAS NOTICIAS",
+                viewLessNews: "VER MENOS",
+                pressArticle1: "Abu Dhabi se Prepara para un Takeover en Diciembre",
+                pressArticle2: "La Innovación se encuentra con la Diplomacia en Dubái",
+                pressArticle3: "El Futuro de la Experiencia de Legado",
+                storiesSubtitle: "MOMENTOS CURADOS",
                 teamSubtitle: "EL COLECTIVO",
                 teamTitle: "Mentes tras el Legado",
                 roleFounder: "FUNDADOR & CEO",
                 roleCoo: "CO-FUNDADOR & COO",
                 roleMarketing: "DIRECTOR DE MARKETING",
+                roleDirectorLatam: "DIRECTOR LATAM",
                 rolePartnerships: "ALIANZAS Y MOMENTUM",
                 roleFinancial: "GERENTE FINANCIERO",
                 roleOperations: "ASISTENTE DE OPERACIONES",
@@ -1024,15 +1601,12 @@
                 roleMarketingCoord: "COORDINADOR DE MARKETING Y COMUNIDAD",
                 contact: "Contacto"
             },
-            // Se mantienen las demás traducciones con los placeholders originales si no se requiere traducción específica ahora,
-            // o se pueden rellenar en futuras iteraciones. Para no alargar demasiado el código, usaré inglés como fallback seguro para los otros idiomas en las secciones nuevas.
             ar: {
                 menu: "القائمة",
                 inquire: "استفسار",
                 heroTitle: "خلق تجارب الإرث",
-                heroText: "في Circolo، نحدث ثورة في تجربة الإرث كخدمة (LEAAS)، ونصيغ لحظات رائدة واتصالات ذات معنى. نترك إرثًا دائمًا يربط بين العالمين المادي والرقمي.",
-                enterProject: "ادخل المشروع",
-                manifesto: "نصنع تجارب مخصصة ترفع من المكانة وتدفع الابتكار وتخلق تأثيرًا دائمًا. نحول الرؤى إلى واقع. تواصل معنا وافتح الباب للاستثناء!",
+                manifestoText: "في Circolo، نحدث ثورة في تجربة الإرث كخدمة (LEAAS). من خلال ربط العوالم المادية والرقمية بابتكار جريء، نصوغ لحظات مخصصة ترفع المكانة وتدفع الابتكار وتخلق تأثيرًا دائمًا. تحويل الرؤى إلى واقع.",
+                enterProject: "افتح الاستثنائي",
                 globalSubtitle: "المسار العالمي | 2025",
                 globalTitle: "عبر الحدود",
                 globalText: "أعمال مختارة من عملياتنا في أكثر من 86 دولة. تحديد التميز في جميع أنحاء العالم.",
@@ -1053,11 +1627,19 @@
                 privTitle: "بواسطة Circolo",
                 privText: "تنسيق تجارب استثنائية لأولئك الذين يسعون للاستثناء. إقامات 2222، الاستحواذات، نوادي العشاء الخاصة والرحلات الاستكشافية.",
                 beginJourney: "ابدأ الرحلة",
+                pressSubtitle: "الصحافة",
+                viewAllNews: "عرض كل الأخبار",
+                viewLessNews: "عرض أقل",
+                pressArticle1: "أبوظبي تستعد لاستحواذ في ديسمبر",
+                pressArticle2: "الابتكار يلتقي بالدبلوماسية في دبي",
+                pressArticle3: "مستقبل تجربة الإرث",
+                storiesSubtitle: "لحظات منسقة",
                 teamSubtitle: "المجموعة",
                 teamTitle: "عقول خلف الإرث",
                 roleFounder: "المؤسس والرئيس التنفيذي",
                 roleCoo: "المؤسس المشارك ومدير العمليات",
                 roleMarketing: "مدير التسويق",
+                roleDirectorLatam: "مدير أمريكا اللاتينية",
                 rolePartnerships: "الشراكات والزخم",
                 roleFinancial: "المدير المالي",
                 roleOperations: "مساعد العمليات",
@@ -1071,25 +1653,18 @@
             }
         };
 
-        // Función para cambiar idioma
         function setLanguage(lang) {
             document.querySelector('.current-lang').textContent = lang.toUpperCase();
-            
-            // Manejo de dirección RTL para Árabe
             if (lang === 'ar') {
                 document.body.setAttribute('dir', 'rtl');
             } else {
                 document.body.setAttribute('dir', 'ltr');
             }
             
-            // Fallback a inglés para otros idiomas en las nuevas secciones si no están definidos
             const t = translations[lang] || translations['en'];
-
-            // Buscar y actualizar textos
             document.querySelectorAll('[data-i18n]').forEach(element => {
                 const key = element.getAttribute('data-i18n');
                 if (t[key]) {
-                    // Animación suave
                     element.style.opacity = 0;
                     setTimeout(() => {
                         element.textContent = t[key];
@@ -1099,7 +1674,6 @@
             });
         }
 
-        // Efecto scroll header
         window.addEventListener('scroll', function() {
             const header = document.getElementById('header');
             if (window.scrollY > 50) {
@@ -1108,6 +1682,58 @@
                 header.classList.remove('scrolled');
             }
         });
+
+        // MODAL LOGIC
+        function openInstaModal(url) {
+            const modal = document.getElementById('insta-modal');
+            const iframe = document.getElementById('insta-frame');
+            iframe.src = url;
+            modal.style.display = "flex";
+        }
+
+        function closeInstaModal(event) {
+            if (event.target.id === 'insta-modal' || event.target.classList.contains('close-modal')) {
+                const modal = document.getElementById('insta-modal');
+                const iframe = document.getElementById('insta-frame');
+                modal.style.display = "none";
+                iframe.src = "";
+            }
+        }
+
+        // PRESS TOGGLE LOGIC
+        function togglePress() {
+            const hiddenItems = document.querySelectorAll('.press-hidden');
+            const btn = document.querySelector('.press-expand-btn');
+            
+            // Comprobar si estamos expandiendo o colapsando
+            const isExpanding = btn.getAttribute('data-expanded') !== 'true';
+
+            hiddenItems.forEach(item => {
+                if (isExpanding) {
+                    item.style.display = 'flex'; // O 'block' dependiendo del diseño
+                    item.classList.add('press-visible');
+                } else {
+                    item.style.display = 'none';
+                    item.classList.remove('press-visible');
+                }
+            });
+
+            if (isExpanding) {
+                btn.setAttribute('data-expanded', 'true');
+                btn.setAttribute('data-i18n', 'viewLessNews');
+                // Actualizar texto inmediatamente según idioma actual
+                const currentLang = document.querySelector('.current-lang').textContent.toLowerCase();
+                btn.textContent = translations[currentLang]?.viewLessNews || "VIEW LESS";
+            } else {
+                btn.setAttribute('data-expanded', 'false');
+                btn.setAttribute('data-i18n', 'viewAllNews');
+                const currentLang = document.querySelector('.current-lang').textContent.toLowerCase();
+                btn.textContent = translations[currentLang]?.viewAllNews || "VIEW ALL NEWS";
+                
+                // Scroll suave de vuelta al inicio de la sección de prensa
+                document.querySelector('.press-section').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
     </script>
 </body>
 </html>
